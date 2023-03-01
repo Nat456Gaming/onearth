@@ -1,0 +1,25 @@
+.sdg-pict{
+	max-width: 300px;
+}
+
+.icons{
+    max-width: 200px;
+}
+
+h1{
+	font-size: 600%;
+    font-family: arial;
+}
+
+.flex-container{
+	display: flex;
+    height: 300px;
+    justify-content: space-evenly;
+}
+
+.end-page{
+    position: fixed;
+    bottom: 0;
+    right: 20%;
+    left: 20%;
+}
