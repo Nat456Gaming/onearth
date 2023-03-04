@@ -3,11 +3,14 @@
 	<head>
 		<title>Onearth</title>
 		<link rel="stylesheet" href="styles/style.css">
-        <link href="/dist/output.css" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
+        <link rel="stylesheet" href="/dist/output.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
 	</head>
 	<body>
-        <h1 class="text-3xl font-bold underline">Hello world!</h1>
+        <header>
+            <a href=""><span class="material-icons">settings</span></a>
+        </header>
+        <h1>Hello world!</h1>
 		<div class="flex-container">
             <?php
                 $i = 1;
@@ -52,8 +55,8 @@
         <footer>
             <nav class="">
                     <a href="./images/loupe.png"><span class="material-icons">home</span></a>
-                    <a href="https://www.w3schools.com/csS/css_navbar.asp"><span class="material-icons">search</span> </a>
-                    <a href=""><span class="material-icons">perm_identity</span> </a>
+                    <a href="https://www.w3schools.com/csS/css_navbar.asp"><span class="material-icons">search</span></a>
+                    <a href=""><span class="material-icons">perm_identity</span></a>
             </nav>
         </footer>
     </body>
