@@ -5,27 +5,12 @@
 		<link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="/dist/output.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <script>
-            function update() {
-                var element = document.getElementById("progress-bar");   
-                var width = 1;
-                var identity = setInterval(scene, 10);
-                function scene() {
-                    if (width >= 100) {
-                        clearInterval(identity);
-                    } else {
-                        width++; 
-                        element.style.width = width + '%';
-                        element.innerHTML = '<p>'+ width + '%</p>';
-                    }
-                }
-            }
-        </script>
+        <script type="text/javascript" src="javascript.js"></script>
 	</head>
 	<body>
         <header>
-            <h1>Welcome</h1>
-            <a href=""><span class="material-icons">settings</span></a>
+            <h1>Onearth</h1>
+            <button onclick="test_progress()"><span class="material-icons">settings</span></button>
         </header>
         <h2 style="margin-top: 10px">In progress</h2>
 		<div class="flex-container">
@@ -75,9 +60,9 @@
             <div id="progress-bar"></div>
         </div>
         <nav class="">
-                <button onclick="update()"><span class="material-icons">home</span></button>
-                <button><span class="material-icons">search</span></button>
-                <button><span class="material-icons">perm_identity</span></button>
+                <button onclick="test_progress()"><span class="material-icons">home</span></button>
+                <button onclick="test_progress()"><span class="material-icons">search</span></button>
+                <button onclick="test_progress()"><span class="material-icons">perm_identity</span></button>
         </nav>
     </footer>
 </html>
