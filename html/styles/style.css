@@ -57,8 +57,6 @@ button{
 
 
 header{
-    /*position: fixed;*/
-	top: 0;
 	width: 101%;
     height: 140px;
     display: flex;
@@ -121,7 +119,6 @@ nav {
 }
 
 .material-icons {
-	/*transform: translateY(100%);*/
 	transform: scale(5);
     color: black;
 }

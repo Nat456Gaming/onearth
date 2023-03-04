@@ -16,7 +16,7 @@
 		<div class="flex-container">
             <?php
                 $i = 1;
-                while ($i <= 16) {
+                while ($i <= 17) {
                     if ($i<10) {
                         echo '<a src=""><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict" /></a>';
                     } else {
