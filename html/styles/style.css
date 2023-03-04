@@ -19,6 +19,18 @@ h1 {
 	font-family: arial;
 }
 
+p {
+	font-size: 250%;
+	font-family: arial;
+}
+
+h2 {
+	font-size: 500%;
+	font-family: arial;
+    margin-left: 50px;
+    margin-bottom: 40px;
+}
+
 .flex-container {
 	display: flex;
 	height: 300px;
@@ -26,36 +38,65 @@ h1 {
     flex-direction: row;
     justify-content: flex-start;
     overflow-y: scroll;
+    overflow-x: unset;
 }
 
 .flex-container a {
-    padding-left: 20px;
+    padding-left: 30px;
     padding-right: 20px;
 }
+
+header{
+    /*position: fixed;*/
+	top: 0;
+	width: 101%;
+    height: 140px;
+    display: flex;
+    justify-content: space-between;
+	align-items: center;
+}
+
+header h1{
+    margin-left: 30px;
+    color: green;
+}
+
+header a{
+    width: 100px;
+}
+
+
 
 footer {
 	position: fixed;
 	bottom: 0;
-	height: 10%;
+	height: 190px;
 	margin-left: -1%;
 	width: 101%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+    flex-direction: column
 }
 
-header{
-    position: fixed;
-	top: 0;
-	width: 101%;
-    height: 140px;
+#progress-status {
+    width: 101%;
+    background-color: #ddd;
+}
+    
+#progress-bar {
+    width: 0%;
+    height: 40px;
+    background-color: #4CAF50;
+    line-height: 32px;
+    color: black;
     display: flex;
-	justify-content: flex-end;
-	align-items: center;
+    align-items: center;
+    justify-content: center;
 }
 
-header a{
-    width: 100px;
+footer p{
+    margin: 0;
 }
 
 nav {
@@ -74,15 +115,20 @@ nav {
     color: black;
 }
 
-nav a {
+nav button {
 	width: 30%;
     display: flex;
 	justify-content: center;
 	align-items: center;
-    width: 30%;
     height: 100%;
+    background-color: rgb(98, 98, 98);
 }
 
 a{
     text-decoration:none; 
+}
+
+button{
+    outline:none;
+    border: none;
 }

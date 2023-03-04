@@ -4,13 +4,30 @@
 		<title>Onearth</title>
 		<link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="/dist/output.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script>
+            function update() {
+                var element = document.getElementById("progress-bar");   
+                var width = 1;
+                var identity = setInterval(scene, 10);
+                function scene() {
+                    if (width >= 100) {
+                        clearInterval(identity);
+                    } else {
+                        width++; 
+                        element.style.width = width + '%';
+                        element.innerHTML = '<p>'+ width + '%</p>';
+                    }
+                }
+            }
+        </script>
 	</head>
 	<body>
         <header>
+            <h1>Welcome</h1>
             <a href=""><span class="material-icons">settings</span></a>
         </header>
-        <h1>Hello world!</h1>
+        <h2 style="margin-top: 10px">In progress</h2>
 		<div class="flex-container">
             <?php
                 $i = 1;
@@ -24,7 +41,7 @@
                 }
             ?>
 		</div>
-        <h1>En cours</h1>
+        <h2>For you</h2>
         <div class="flex-container">
             <?php
                 $i = 4;
@@ -38,7 +55,7 @@
                 }
             ?>
 		</div>
-        <h1>Recommendations</h1>
+        <h2>Done</h2>
         <div class="flex-container">
             <?php
                 $i = 7;
@@ -52,12 +69,15 @@
                 }
             ?>
 		</div>
-        <footer>
-            <nav class="">
-                    <a href="./images/loupe.png"><span class="material-icons">home</span></a>
-                    <a href="https://www.w3schools.com/csS/css_navbar.asp"><span class="material-icons">search</span></a>
-                    <a href=""><span class="material-icons">perm_identity</span></a>
-            </nav>
-        </footer>
     </body>
+    <footer>
+        <div id="progress-status">
+            <div id="progress-bar"></div>
+        </div>
+        <nav class="">
+                <button onclick="update()"><span class="material-icons">home</span></button>
+                <button><span class="material-icons">search</span></button>
+                <button><span class="material-icons">perm_identity</span></button>
+        </nav>
+    </footer>
 </html>
