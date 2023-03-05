@@ -18,9 +18,9 @@
                 $i = 1;
                 while ($i <= 17) {
                     if ($i<10) {
-                        echo '<a src=""><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict" /></a>';
+                        echo '<button onclick="test_progress()"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict" /></button>';
                     } else {
-                        echo '<a src=""><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-'.$i.'.jpg" class="sdg-pict" /></a>';
+                        echo '<button onclick="test_progress()"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-'.$i.'.jpg" class="sdg-pict" /></button>';
                     }
                     $i ++ ;
                 }
@@ -32,9 +32,9 @@
                 $i = 4;
                 while ($i <= 8) {
                     if ($i<10) {
-                        echo '<a src=""><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict" /></a>';
+                        echo '<button onclick="test_progress()"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict" /></button>';
                     } else {
-                        echo '<a src=""><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-'.$i.'.jpg" class="sdg-pict" /></a>';
+                        echo '<button onclick="test_progress()"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-'.$i.'.jpg" class="sdg-pict" /></button>';
                     }
                     $i ++ ;
                 }
@@ -57,7 +57,8 @@
     </body>
     <footer>
         <div id="progress-status">
-            <div id="progress-bar"></div>
+            <p id="progress-bar-text">0%</p>
+            <p id="progress-bar" style="width: 0%"></p>
         </div>
         <nav class="">
                 <button onclick="test_progress()"><span class="material-icons">home</span></button>

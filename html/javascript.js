@@ -1,14 +1,12 @@
 function test_progress() {
-    var element = document.getElementById("progress-bar");   
-    var width = 1;
-    var identity = setInterval(scene, 10);
-    function scene() {
-        if (width >= 100) {
-            clearInterval(identity);
-        } else {
-            width++; 
-            element.style.width = width + '%';
-            element.innerHTML = '<p>'+ width + '%</p>';
-        }
-    }
+	let identity = setInterval(() => {
+        let pBar = document.getElementById("progress-bar");
+		if (parseInt(pBar.style.width.slice(0,pBar.style.width.length-1)) >= 100) {
+			clearInterval(identity);
+		} else {
+			pBar.style.width = (parseInt(pBar.style.width.slice(0,pBar.style.width.length-1))+1) + "%";
+			//pBar.innerHTML = parseInt(pBar.style.width.slice(0,pBar.style.width.length-1)) + "%";
+         document.getElementById("progress-bar-text").innerHTML=parseInt(pBar.style.width.slice(0,pBar.style.width.length-1)) + "%";
+		}
+	}, 10);
 }
