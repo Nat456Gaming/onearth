@@ -1,18 +1,18 @@
 /**
  * @param {number} pourcent - pourcentage à ajouter
  */
-function init_progress(pourcent) {
-	pourcent += parseInt(document.getElementById("progress-bar").style.width.slice(0, document.getElementById("progress-bar").style.width.length - 1));
+function global_progress(pourcent) {
+	pourcent += parseInt(document.getElementById("global_progress").style.width.slice(0, document.getElementById("global_progress").style.width.length - 1));
 	let identity = setInterval(
 		(pourcent) => {
-			let pBar = document.getElementById("progress-bar");
+			let pBar = document.getElementById("global_progress");
 			if (parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) >= pourcent) {
 				clearInterval(identity);
-			} else if (parseInt(document.getElementById("progress-bar").style.width.slice(0, document.getElementById("progress-bar").style.width.length - 1)) >= 100) {
+			} else if (parseInt(document.getElementById("global_progress").style.width.slice(0, document.getElementById("global_progress").style.width.length - 1)) >= 100) {
 				clearInterval(identity);
 			} else {
 				pBar.style.width = parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) + 1 + "%";
-				document.getElementById("progress-bar-text").innerHTML = parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) + "%";
+				document.getElementById("global_progress-text").innerHTML = parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) + "%";
 			}
 		},
 		50,
@@ -24,5 +24,33 @@ function init_progress(pourcent) {
  * @param {number} goal - le goal selectioner (de 0 à 16)
  */
 function select_goal(goal) {
-	return alert("Vous avez cliquer sur le goal n°" + goal);
+	return alert("Vous avez cliquez sur le goal n°" + goal);
+}
+
+/**
+ * @param {number} goal - le goal selectioner (de 0 à 16)
+ * @param {number} pourcent - pourcentage à ajouter
+ */
+function goal_progress(goal, pourcent) {
+	let i = 0;
+	do {
+		i++;
+	} while (t.length < i);
+	pourcent += parseInt(document.getElementsByClassName("goal0" + goal).style.width.slice(0, document.getElementsByClassName("goal0" + goal).style.width.length - 1));
+	let identity = setInterval(
+		(goal, pourcent) => {
+			let pBar = document.getElementsByClassName("goal0" + goal);
+			if (parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) >= pourcent) {
+				clearInterval(identity);
+			} else if (parseInt(document.getElementsByClassName("goal0" + goal).style.width.slice(0, document.getElementsByClassName("goal0" + goal).style.width.length - 1)) >= 100) {
+				clearInterval(identity);
+			} else {
+				pBar.style.width = parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) + 1 + "%";
+				document.getElementsByClassName("goal0" + goal).innerHTML = parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) + "%";
+			}
+		},
+		50,
+		goal,
+		pourcent
+	);
 }
