@@ -32,10 +32,6 @@ function select_goal(goal) {
  * @param {number} pourcent - pourcentage à ajouter
  */
 function goal_progress(goal, pourcent) {
-	let i = 0;
-	do {
-		i++;
-	} while (t.length < i);
 	pourcent += parseInt(document.getElementsByClassName("goal0" + goal).style.width.slice(0, document.getElementsByClassName("goal0" + goal).style.width.length - 1));
 	let identity = setInterval(
 		(goal, pourcent) => {
@@ -45,8 +41,12 @@ function goal_progress(goal, pourcent) {
 			} else if (parseInt(document.getElementsByClassName("goal0" + goal).style.width.slice(0, document.getElementsByClassName("goal0" + goal).style.width.length - 1)) >= 100) {
 				clearInterval(identity);
 			} else {
-				pBar.style.width = parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) + 1 + "%";
-				document.getElementsByClassName("goal0" + goal).innerHTML = parseInt(pBar.style.width.slice(0, pBar.style.width.length - 1)) + "%";
+				let i = 0;
+				do {
+					pBar[i].style.width = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) + 1 + "%";
+					document.getElementsByClassName("goal0" + goal)[i].innerHTML = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) + "%";
+					i++;
+				} while (t.length < i);
 			}
 		},
 		50,
