@@ -96,6 +96,8 @@ p#progress-bar-text {
     color: black;
     text-align: center;
     z-index: 11;
+    vertical-align: baseline;
+    padding: auto;
 }
 
 p#progress-bar {
