@@ -24,7 +24,7 @@ function global_progress(pourcent) {
  * @param {number} goal - le goal selectioner (de 0 à 16)
  */
 function select_goal(goal) {
-	return alert("Vous avez cliquez sur le goal n°" + goal);
+	return alert("You selected the " + goal+"th goal.");
 }
 
 /**

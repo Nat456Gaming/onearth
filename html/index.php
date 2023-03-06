@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<title>Onearth</title>
+        <link rel="shortcut icon" type="image/png" href="ico.png" >
 		<link rel="stylesheet" href="styles/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
@@ -12,6 +13,7 @@
             <h1>Onearth</h1>
             <button onclick="goal_progress(2,10)"><span class="material-icons" style="color: #252525">settings</span></button>
         </header>
+
             <section>
             <h2 style="margin-top: 10px">In progress</h2>
             <div class="flex-container">
@@ -59,6 +61,12 @@
                 <p>cc</p>
             </div>
         </section>
+
+        
+        <?php include("./pages/home.php"); ?>
+        
+    </body>
+
             <footer>
                 <div class="progress-status">
                     <p id="global_progress-text" class="progress-bar-text">0%</p>
