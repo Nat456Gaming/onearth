@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    background-color: rgb(125, 125, 125,0.5);
+    background-color: rgb(255, 255, 255);
 }
 
 h1 {
@@ -23,14 +23,19 @@ p {
 	font-family: arial;
 }
 
-a{
+a {
     text-decoration:none; 
 }
 
-button{
+button {
     outline: none;
     border: none;
-    background-color: rgb(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    transition: 1s;
+}
+button:hover {
+    transform: scale(1.04);
+    transition: 0.5s;
 }
 
 .flex-container {
@@ -41,10 +46,12 @@ button{
     justify-content: flex-start;
     overflow-y: scroll;
     overflow-x: unset;
+    border-radius: 10px;
 }
 
 .sdg-pict {
 	max-width: 300px;
+    border-radius: 10px;
 }
 
 .flex-container a {
@@ -62,7 +69,7 @@ header {
 
 header h1 {
     margin-left: 30px;
-    color: green;
+    color: #4CAF50;
 }
 
 header button {
@@ -106,13 +113,15 @@ p.progress-bar {
     margin: 0;
     background-color: #4CAF50;
 }
+
 p.stg-progress {
-    width: 100%;
     background-color: #d3ce4f;
     opacity: 0.5;
     height: 10%;
     z-index: 8;
+    margin-bottom: -5px;
 }
+
 p.stg-progress-text {
     width: 100%;
     height: 0%;
@@ -126,7 +135,6 @@ p.stg-progress-text {
     padding: auto;
 }
 
-
 nav {
 	width: 100%;
 	height: 100%;
@@ -134,13 +142,14 @@ nav {
 	justify-content: space-evenly;
 	flex-direction: row;
 	align-items: center;
-    background-color: rgb(98, 98, 98);
+    background-color: #252525;
     z-index: 9;
 }
 
 .material-icons {
 	transform: scale(5);
     color: black;
+    color: #FFFFFF;
 }
 
 nav button {
