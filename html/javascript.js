@@ -43,7 +43,6 @@ function goal_progress(goal, nb = 1) {
 			} else {
 				let i = 0;
 				while (i < pBar.length) {
-					console.log(pBar[i]);
 					pBar[i].style.width = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) + 20 + "%";
 					document.getElementsByClassName("stg-progress-text goal" + goal)[i].innerHTML = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) / 20 + "/5";
 					i++;

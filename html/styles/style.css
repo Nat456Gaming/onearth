@@ -30,14 +30,14 @@ button {
     transition: 1s;
 }
 
+button:active {
+    transform: scale(0.96);
+    transition: 0.2s;
+}
+
 .material-icons {
 	  transform: scale(5);
     color: black;
-}
-
-button:hover {
-    transform: scale(1.2);
-    transition: 0.5s;
 }
 
 .flex-container {
@@ -62,11 +62,6 @@ button.stg-button {
     padding-left: 30px;
     padding-right: 20px;
     height: 50%;
-}
-
-button.stg-button:hover {
-    transform: scale(1.04);
-    transition: 0.5s;
 }
 
 div.stg-progress-container {
@@ -137,7 +132,7 @@ footer {
     height: 25%;
 }
 
-#progress-bar-text {
+.progress-bar-text {
     width: 100%;
     height: 0%;
     margin: 0;
@@ -146,7 +141,7 @@ footer {
     text-align: center;
 }
 
-#progress-bar {
+.progress-bar {
     height: 100%;
     margin: 0;
     background-color: #4CAF50;
