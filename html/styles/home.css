@@ -1,0 +1,60 @@
+span.material-icons-round {
+   transform: matrix(10,0,0,10,135,200);
+   color: rgb(33, 95, 35);
+   display: flex;
+   z-index: 8;
+   margin: 0;  
+   height: 23px;
+   width: 23px;
+}
+
+.flex-container {
+   display: flex;
+    height: 32%;
+   flex-wrap: nowrap;
+   flex-direction: row;
+   justify-content: flex-start;
+   overflow-y: hidden;
+   overflow-x: scroll;
+}
+
+img.sdg-pict {
+  max-width: 300px;
+   max-height: 300px;
+   border-radius: 10px;
+   z-index: 7;
+}
+
+button.stg-button {
+   margin: 5px;
+   padding-left: 30px;
+   padding-right: 20px;
+   height: 100%;
+}
+
+div.stg-progress-container {
+   height: 8%;
+   margin: 0;
+   border-radius: 20px;
+   background-color: rgb(76, 175, 80,0.8);
+}
+
+p.stg-progress {
+   width: 0%;
+   height: 100%;
+   margin: 0;
+   background-color: #4CAF50;
+   border-radius: 20px;
+}
+
+p.stg-progress-text {
+   width: 100%;
+   height: 0%;
+   margin: 0;
+   font-size: 20px;
+   color: black;
+   text-align: center;
+   z-index: 9;
+   vertical-align: baseline;
+   padding: auto;
+}
