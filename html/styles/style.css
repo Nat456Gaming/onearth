@@ -40,6 +40,24 @@ button:active {
     color: black;
 }
 
+
+span.material-icons {
+	transform: scale(5);
+    color: #FFFFFF;
+}
+
+span.material-icons-round {
+    transform: matrix(10,0,0,10,135,200);
+    color: rgb(33, 95, 35);
+    display: flex;
+    z-index: 8;
+    margin: 0;  
+    height: 23px;
+    width: 23px;
+}
+
+
+
 .flex-container {
     display: flex;
 	  height: 32%;
@@ -61,7 +79,7 @@ button.stg-button {
     margin: 5px;
     padding-left: 30px;
     padding-right: 20px;
-    height: 50%;
+    height: 100%;
 }
 
 div.stg-progress-container {
@@ -111,7 +129,10 @@ header button {
     color: #252525;
 }
 
-
+header button:active {
+    transform: scale(1);
+    transform: rotate(45deg);
+}
 
 footer {
 	position: fixed;
