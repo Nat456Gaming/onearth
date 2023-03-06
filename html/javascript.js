@@ -29,29 +29,29 @@ function select_goal(goal) {
 
 /**
  * @param {number} goal - le goal selectioner (de 0 à 16)
- * @param {number} pourcent - pourcentage à ajouter
+ * @param {number} nb - nb de tache à ajouter
  */
-function goal_progress(goal, pourcent) {
-	console.log(document.getElementsByClassName("goal" + goal)[0].style.width);
-	pourcent += parseInt(document.getElementsByClassName("goal" + goal)[0].style.width.slice(0, document.getElementsByClassName("goal" + goal)[0].style.width.length - 1));
+function goal_progress(goal, nb = 1) {
+	nb += parseInt(document.getElementsByClassName("stg-progress goal" + goal)[0].style.width.slice(0, document.getElementsByClassName("goal" + goal)[0].style.width.length - 1)) / 20;
 	let identity = setInterval(
-		(goal, pourcent) => {
-			let pBar = document.getElementsByClassName("goal" + goal);
-			if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) >= pourcent) {
+		(goal, nb) => {
+			let pBar = document.getElementsByClassName("stg-progress goal" + goal);
+			if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= nb) {
 				clearInterval(identity);
-			} else if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) >= 100) {
+			} else if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= 5) {
 				clearInterval(identity);
 			} else {
 				let i = 0;
-				do {
-					pBar[i].style.width = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) + 1 + "%";
-					document.getElementsByClassName("goal" + goal)[i].innerHTML = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) + "%";
+				while (i < pBar.length) {
+					console.log(pBar[i]);
+					pBar[i].style.width = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) + 20 + "%";
+					document.getElementsByClassName("stg-progress-text goal" + goal)[i].innerHTML = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) / 20 + "/5";
 					i++;
-				} while (pBar.length < i);
+				}
 			}
 		},
 		50,
 		goal,
-		pourcent
+		nb
 	);
 }

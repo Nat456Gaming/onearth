@@ -33,30 +33,72 @@ button {
     background-color: rgba(0, 0, 0, 0);
     transition: 1s;
 }
+
 button:hover {
+    transform: scale(1.2);
+    transition: 0.5s;
+}
+
+.material-icons {
+	transform: scale(5);
+    color: #FFFFFF;
+}
+
+
+div.flex-container {
+	display: flex;
+	height: 32%;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+img.sdg-pict {
+	max-width: 300px;
+    max-height: 300px;
+    border-radius: 10px;
+    z-index: 7;
+}
+
+button.stg-button {
+    margin: 5px;
+    padding-left: 30px;
+    padding-right: 20px;
+    height: 50%;
+}
+
+button.stg-button:hover {
     transform: scale(1.04);
     transition: 0.5s;
 }
 
-.flex-container {
-	display: flex;
-	height: 304px;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: flex-start;
-    overflow-y: scroll;
-    overflow-x: unset;
-    border-radius: 10px;
+div.stg-progress-container {
+    height: 8%;
+    margin: 0;
+    border-radius: 20px;
+    background-color: rgb(76, 175, 80,0.8);
 }
 
-.sdg-pict {
-	max-width: 300px;
-    border-radius: 10px;
+p.stg-progress {
+    width: 0%;
+    height: 100%;
+    margin: 0;
+    background-color: #4CAF50;
+    border-radius: 20px;
 }
 
-.flex-container a {
-    padding-left: 30px;
-    padding-right: 20px;
+p.stg-progress-text {
+    width: 100%;
+    height: 0%;
+    margin: 0;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+    z-index: 9;
+    vertical-align: baseline;
+    padding: auto;
 }
 
 header {
@@ -74,6 +116,7 @@ header h1 {
 
 header button {
     width: 150px;
+    color: #252525;
 }
 
 footer {
@@ -114,27 +157,6 @@ p.progress-bar {
     background-color: #4CAF50;
 }
 
-p.stg-progress {
-    background-color: #d3ce4f;
-    opacity: 0.5;
-    height: 10%;
-    z-index: 8;
-    margin-bottom: -5px;
-}
-
-p.stg-progress-text {
-    width: 100%;
-    height: 0%;
-    margin: 0;
-    font-size: 10px;
-    color: black;
-    text-align: center;
-    opacity: 0.5;
-    z-index: 9;
-    vertical-align: baseline;
-    padding: auto;
-}
-
 nav {
 	width: 100%;
 	height: 100%;
@@ -144,12 +166,6 @@ nav {
 	align-items: center;
     background-color: #252525;
     z-index: 9;
-}
-
-.material-icons {
-	transform: scale(5);
-    color: black;
-    color: #FFFFFF;
 }
 
 nav button {
