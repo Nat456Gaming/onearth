@@ -1,16 +1,17 @@
-#noscript {
+.noscript {
     font-size: 1000%;
     color: red;
     font-family: arial;
+    text-align: center;
 }
 
 body {
     background-color: rgb(255, 255, 255);
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 section {
-    margin-bottom: 22%;
+    margin-bottom: 11%;
 }
 
 h1 {

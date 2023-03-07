@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
         <script type="text/javascript" src="javascript.js"></script>
-        <noscript><p id="noscript">You need to enable the javascript to use this web site !</p></noscript>
+        <noscript><p class="noscript">You need to allow javascript to use this website !</p></noscript>
 	</head>
 	<body>
         <header>
@@ -26,15 +26,15 @@
             }
         ?>
         <footer>
-                <div class="progress-status">
-                    <p id="global_progress-text" class="progress-bar-text">0%</p>
-                    <p id="global_progress" class="progress-bar" style="width: 0%"></p>
-                </div>
-                <nav>
-                        <button onclick="show('home')"><span class="material-icons">home</span></button>
-                        <button onclick="show('search')"><span class="material-icons">search</span></button>
-                        <button onclick="show('friends')"><span class="material-icons">perm_identity</span></button>
-                </nav>
-            </footer>
+            <div class="progress-status">
+                <p id="global_progress-text" class="progress-bar-text">0%</p>
+                <p id="global_progress" class="progress-bar" style="width: 0%"></p>
+            </div>
+            <nav>
+                <button onclick="show('home')"><span class="material-icons">home</span></button>
+                <button onclick="show('search')"><span class="material-icons">search</span></button>
+                <button onclick="show('friends')"><span class="material-icons">perm_identity</span></button>
+            </nav>
+        </footer>
     </body>
 </html>

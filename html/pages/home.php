@@ -28,14 +28,14 @@
         ?>
     </div>
     <h2>Done</h2>
-    <div class="flex-container">
+    <div class="flex-container done">
         <?php
             $i = 7;
             while ($i <= 12) {
                 if ($i<10) {
-                    echo '<button onclick="goal_progress('.$i.')" class="sdg-button goal'.$i.'"><span class="goal'.$i.' material-icons-round" style="display: none">task_alt</span><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict goal'.$i.'" /><div class="sdg-progress-container goal'.$i.'"><p class="sdg-progress-text goal'.$i.'">0/5</p><p class="sdg-progress goal'.$i.'" style="width: 0%"></p></div></button>';
+                    echo '<button onclick="select_goal('.$i.')"  class="sdg-button goal'.$i.'"><span class="material-icons">done</span><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict goal'.$i.'" /></button>';
                 } else {
-                    echo '<button onclick="goal_progress('.$i.')" class="sdg-button goal'.$i.'"><span class="goal'.$i.' material-icons-round" style="display: none">task_alt</span><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-'.$i.'.jpg" class="sdg-pict goal'.$i.'" /><div class="sdg-progress-container goal'.$i.'"><p class="sdg-progress-text goal'.$i.'">0/5</p><p class="sdg-progress goal'.$i.'" style="width: 0%"></p></div></button>';
+                    echo '<button onclick="select_goal('.$i.')" class="sdg-button goal'.$i.'"><span class="material-icons">done</span><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-'.$i.'.jpg" class="sdg-pict goal'.$i.'" /></button>';
                 }
                 $i ++ ;
             }
