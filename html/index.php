@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
         <script type="text/javascript" src="javascript.js"></script>
+        <noscript><p id="noscript">You need to enable the javascript to use this web site !</p></noscript>
 	</head>
 	<body>
         <header>

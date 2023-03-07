@@ -1,9 +1,17 @@
+#noscript {
+    font-size: 1000%;
+    color: red;
+    font-family: arial;
+}
+
 body {
     background-color: rgb(255, 255, 255);
 }
+
 section {
     margin-bottom: 22%;
 }
+
 h1 {
 	font-size: 600%;
 	font-family: arial;
