@@ -32,10 +32,10 @@ function select_goal(goal) {
  * @param {number} nb - the number of done task to add (1 to 5)
  */
 function goal_progress(goal, nb = 1) {
-	nb += parseInt(document.getElementsByClassName("stg-progress goal" + goal)[0].style.width.slice(0, document.getElementsByClassName("goal" + goal)[0].style.width.length - 1)) / 20;
+	nb += parseInt(document.getElementsByClassName("sdg-progress goal" + goal)[0].style.width.slice(0, document.getElementsByClassName("goal" + goal)[0].style.width.length - 1)) / 20;
 	let identity = setInterval(
 		(goal, nb) => {
-			let pBar = document.getElementsByClassName("stg-progress goal" + goal);
+			let pBar = document.getElementsByClassName("sdg-progress goal" + goal);
 			if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= nb) {
 				clearInterval(identity);
 			} else if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= 5) {
@@ -44,7 +44,7 @@ function goal_progress(goal, nb = 1) {
 				let i = 0;
 				while (i < pBar.length) {
 					pBar[i].style.width = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) + 20 + "%";
-					document.getElementsByClassName("stg-progress-text goal" + goal)[i].innerHTML = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) / 20 + "/5";
+					document.getElementsByClassName("sdg-progress-text goal" + goal)[i].innerHTML = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) / 20 + "/5";
 					i++;
 				}
 				if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= 5) {

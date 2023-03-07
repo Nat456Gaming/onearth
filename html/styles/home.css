@@ -25,21 +25,21 @@ img.sdg-pict {
    z-index: 7;
 }
 
-button.stg-button {
+button.sdg-button {
    margin: 5px;
    padding-left: 30px;
    padding-right: 20px;
    height: 100%;
 }
 
-div.stg-progress-container {
+div.sdg-progress-container {
    height: 8%;
    margin: 0;
    border-radius: 20px;
    background-color: rgb(76, 175, 80,0.8);
 }
 
-p.stg-progress {
+p.sdg-progress {
    width: 0%;
    height: 100%;
    margin: 0;
@@ -47,7 +47,7 @@ p.stg-progress {
    border-radius: 20px;
 }
 
-p.stg-progress-text {
+p.sdg-progress-text {
    width: 100%;
    height: 0%;
    margin: 0;
