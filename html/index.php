@@ -3,8 +3,13 @@
 	<head>
 		<title>Onearth</title>
         <link rel="shortcut icon" type="image/png" href="icon.png" >
-		<link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="styles/home.css">
+        <?php //load all the files/styles
+            $i = "";
+            foreach (array_filter(glob('./styles/*'), 'is_file') as $file){
+                $i = $i.'<link rel="stylesheet" href="styles/'.basename($file).'">';
+            }
+            echo $i
+        ?>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
         <script type="text/javascript" src="javascript.js"></script>
@@ -16,8 +21,7 @@
             <button onclick="show('settings')"><span class="material-icons" style="color: #252525">settings</span></button>
         </header>
         <?php //load all the files/pages
-            foreach (array_filter(glob('./pages/*'), 'is_file') as $file)
-            {
+            foreach (array_filter(glob('./pages/*'), 'is_file') as $file){
                 include('./pages/'.basename($file));
             }
         ?>
