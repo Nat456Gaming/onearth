@@ -33,7 +33,7 @@ button {
 }
 
 button:active {
-    transform: scale(0.9);
+    transform: scale(1.04);
     transition: 0.3s;
 }
 
@@ -121,6 +121,11 @@ nav button {
 	justify-content: center;
 	align-items: center;
     height: 100%;
+}
+
+nav button:active {
+    transform: scale(1.25);
+    transition: 0.2s;
 }
 
 nav .material-icons{

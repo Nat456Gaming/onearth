@@ -1,11 +1,11 @@
 span.material-icons-round {
-   transform: matrix(10,0,0,10,135,200);
+   transform: matrix(8,0,0,8,56,93);
    color: rgb(33, 95, 35);
    display: flex;
    z-index: 8;
    margin: 0;  
-   height: 23px;
-   width: 23px;
+   height: 0px;
+   width: 0px;
 }
 
 .flex-container {

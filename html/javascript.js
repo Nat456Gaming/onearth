@@ -1,5 +1,5 @@
 /**
- * @param {number} pourcent - pourcentage à ajouter
+ * @param {number} pourcent - the % to show
  */
 function global_progress(pourcent) {
 	pourcent += parseInt(document.getElementById("global_progress").style.width.slice(0, document.getElementById("global_progress").style.width.length - 1));
@@ -21,15 +21,15 @@ function global_progress(pourcent) {
 }
 
 /**
- * @param {number} goal - le goal selectioner (de 0 à 16)
+ * @param {number} goal - the goal id (1 to 16)
  */
 function select_goal(goal) {
-	return alert("You selected the " + goal+"th goal.");
+	return alert("You selected the " + goal + "th goal.");
 }
 
 /**
- * @param {number} goal - le goal selectioner (de 0 à 16)
- * @param {number} nb - nb de tache à ajouter
+ * @param {number} goal - the goal id (1 to 16)
+ * @param {number} nb - the number of done task to add (1 to 5)
  */
 function goal_progress(goal, nb = 1) {
 	nb += parseInt(document.getElementsByClassName("stg-progress goal" + goal)[0].style.width.slice(0, document.getElementsByClassName("goal" + goal)[0].style.width.length - 1)) / 20;
@@ -39,11 +39,6 @@ function goal_progress(goal, nb = 1) {
 			if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= nb) {
 				clearInterval(identity);
 			} else if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= 5) {
-				let i = 0;
-				while (i < pBar.length) {
-					document.getElementsByClassName("goal" + goal+" material-icons-round")[i].style.display = flex;
-					i++;
-				}
 				clearInterval(identity);
 			} else {
 				let i = 0;
@@ -52,10 +47,34 @@ function goal_progress(goal, nb = 1) {
 					document.getElementsByClassName("stg-progress-text goal" + goal)[i].innerHTML = parseInt(pBar[i].style.width.slice(0, pBar[i].style.width.length - 1)) / 20 + "/5";
 					i++;
 				}
+				if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= 5) {
+					let i = 0,
+						check = document.getElementsByClassName("goal" + goal + " material-icons-round");
+					do {
+						check[i].style.display = "flex";
+						i++;
+					} while (i < check.length);
+					clearInterval(identity);
+				}
 			}
 		},
 		50,
 		goal,
 		nb
 	);
+}
+
+/**
+ * @param {string} page - the page to show
+ */
+function show(page) {
+	if (document.getElementById(page) == undefined) {
+		return alert("No pages call '" + page + "'");
+	}
+	let i = 0;
+	while (i < document.getElementsByClassName("pages").length) {
+		document.getElementsByClassName("pages")[i].style.display = "none";
+		i++;
+	}
+	return document.getElementById(page).style.display = "block";
 }
