@@ -12,7 +12,7 @@
 	<body>
         <header>
             <h1>Onearth</h1>
-            <button onclick="goal_progress(2,10)"><span class="material-icons" style="color: #252525">settings</span></button>
+            <button onclick="show('settings')"><span class="material-icons" style="color: #252525">settings</span></button>
         </header>
         <?php //load all the files/pages
             foreach (array_filter(glob('./pages/*'), 'is_file') as $file)
