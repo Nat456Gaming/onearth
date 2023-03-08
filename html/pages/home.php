@@ -3,7 +3,7 @@
     <div class="flex-container">
         <?php
             $i = 1;
-            while ($i <= 16) {
+            while ($i <= 17) {
                 if ($i<10) {
                     echo '<button onclick="goal_progress('.$i.')" class="sdg-button goal'.$i.'"><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict goal'.$i.'" /><div class="sdg-progress-container goal'.$i.'"><p class="sdg-progress-text goal'.$i.'">0/5</p><p class="sdg-progress goal'.$i.'" style="width: 0%"></p></div></button>';
                 } else {
@@ -30,8 +30,8 @@
     <h2>Done</h2>
     <div class="flex-container done">
         <?php
-            $i = 0;
-            while ($i <= 16) {
+            $i = 1;
+            while ($i <= 17) {
                 if ($i<10) {
                     echo '<button onclick="select_goal('.$i.')"  class="sdg-button goal'.$i.'" style="display: none"><span class="material-icons check">done</span><img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-0'.$i.'.jpg" class="sdg-pict goal'.$i.'" /></button>';
                 } else {
