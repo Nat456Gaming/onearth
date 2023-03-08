@@ -18,6 +18,7 @@ function global_progress(pourcent) {
 		50,
 		pourcent
 	);
+	return;
 }
 
 /**
@@ -48,12 +49,19 @@ function goal_progress(goal, nb = 1) {
 					i++;
 				}
 				if (parseInt(pBar[0].style.width.slice(0, pBar[0].style.width.length - 1)) / 20 >= 5) {
-					let i = 0,
-						check = document.getElementsByClassName("goal" + goal + " material-icons-round");
+					let i = 0;
+					let btn = document.getElementsByClassName("sdg-button goal" + goal);
 					do {
-						check[i].style.display = "flex";
+						btn[i].style.display = "none";
 						i++;
-					} while (i < check.length);
+					} while (i < btn.length);
+					i = 0;
+					let done = document.getElementsByClassName("done")[0].getElementsByClassName("sdg-button goal" + goal);
+					console.log(document.getElementsByClassName("done"));
+					do {
+						done[i].style.display = "block";
+						i++;
+					} while (i < done.length);
 					clearInterval(identity);
 				}
 			}
@@ -62,6 +70,7 @@ function goal_progress(goal, nb = 1) {
 		goal,
 		nb
 	);
+	return;
 }
 
 /**
@@ -76,5 +85,6 @@ function show(page) {
 		document.getElementsByClassName("pages")[i].style.display = "none";
 		i++;
 	}
-	return document.getElementById(page).style.display = "block";
+	document.getElementById(page).style.display = "block";
+	return;
 }
