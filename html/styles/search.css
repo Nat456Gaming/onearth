@@ -1,15 +1,23 @@
-.searchbar{
+div#search-container {
     height: 10%;
     display: flex;
     justify-content: center;
     flex-direction: raw;
     align-items: center;
 }
+form#search-form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: raw;
+    align-items: center;
+}
 
-.searchbar input{
+form#search-form input{
     display: block;
     text-align: left;
-    width: 80%;
+    width: 100%;
     padding: 14px;
     border: none;
     margin-top: 8px;
@@ -22,4 +30,10 @@ button#srh-button {
     border: solid black 2px;
     display: flex;
     flex-direction: row;
+}
+
+button#srh-button span.material-icons{
+    height: 0px;
+    width: 70px;
+    transform: scale(4);
 }

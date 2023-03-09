@@ -88,3 +88,10 @@ function show(page) {
 	document.getElementById(page).style.display = "block";
 	return;
 }
+
+/**
+ * no param
+ */
+function search() {
+	console.log(document.getElementById("search-form").elements[0].value);
+}
