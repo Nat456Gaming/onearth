@@ -1,29 +1,55 @@
-div#search-container {
+#head-bar{
+    display: flex;
+    flex-direction: column;
+    color: red;
+}
+
+#search-container {
     height: 10%;
     display: flex;
     justify-content: center;
     flex-direction: row;
     align-items: center;
 }
-form#search-form{
+
+#search-form{
     height: 100%;
     width: 100%;
+    margin: 0 40px 0 10px;
 }
 
-form#search-form input{
+#search-form input{
     display: block;
     text-align: left;
     width: 100%;
     padding: 14px;
     border: none;
-    margin-top: 8px;
+    margin: 0;
     font-size: 500%;
-}
-button#srh-button {
     border-radius: 20px;
     border: solid black 2px;
 }
 
-button#srh-button span.material-icons{
+#srh-button {
+    margin: 0 10px 0 0;
+    border-radius: 20px;
+    border: solid black 2px;
+}
+
+#srh-button span.material-icons{
     color:black;
+}
+
+#search-tab{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+h3{
+    font-size: 500%;
+	font-family: arial;
+    color: black;
+    margin: 10px 0 10px 0;
+    border-bottom: 10px solid black;
 }

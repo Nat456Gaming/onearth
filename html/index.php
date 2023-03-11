@@ -15,7 +15,7 @@
 	<body>
         <header>
             <h1>Onearth</h1>
-            <button onclick="show('settings')"><span class="material-icons" style="color: #252525">settings</span></button>
+            <button onclick="show('settings')"><span class="material-icons">settings</span></button>
         </header>
         <?php //load all the pages files
             foreach (array_filter(glob('./pages/*'), 'is_file') as $file){
