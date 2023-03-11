@@ -93,5 +93,5 @@ function show(page) {
  * no param
  */
 function search() {
-	console.log(document.getElementById("search-form").elements[0].value);
+	alert("You searched: " + document.getElementById("search-form").elements[0].value);
 }

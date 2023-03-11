@@ -50,9 +50,7 @@ button:active {
 }
 
 span.material-icons {
-    height: 23px;
-    width: 23px;
-	transform: scale(5);
+    font-size: 115px;
     color: rgb(255, 255, 255);
 }
 
