@@ -1,24 +1,23 @@
-#head-bar{
+div#head-bar{
     display: flex;
     flex-direction: column;
     color: red;
 }
 
-#search-container {
+div#search-container {
     height: 10%;
     display: flex;
     justify-content: center;
     flex-direction: row;
     align-items: center;
 }
-
-#search-form{
+form#search-form{
     height: 100%;
     width: 100%;
     margin: 0 40px 0 10px;
 }
 
-#search-form input{
+form#search-form input{
     display: block;
     text-align: left;
     width: 100%;
@@ -29,18 +28,16 @@
     border-radius: 20px;
     border: solid black 2px;
 }
-
-#srh-button {
-    margin: 0 10px 0 0;
+button#srh-button {
     border-radius: 20px;
     border: solid black 2px;
 }
 
-#srh-button span.material-icons{
+button#srh-button span.material-icons{
     color:black;
 }
 
-#search-tab{
+div#search-tab{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

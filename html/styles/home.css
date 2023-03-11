@@ -1,4 +1,4 @@
-.done .material-icons {
+div.done span.material-icons {
    transform: translateY(200px);
    color: rgb(33, 95, 35);
    display: flex;
@@ -9,7 +9,7 @@
    font-size: 100px;
 }
 
-.flex-container {
+div.flex-container {
    display: flex;
    height: 32%;
    flex-wrap: nowrap;

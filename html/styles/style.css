@@ -1,4 +1,4 @@
-.noscript {
+noscript p.noscript {
     font-size: 1000%;
     color: red;
     font-family: arial;
@@ -67,23 +67,34 @@ header {
 }
 
 header h1 {
-    margin-left: 30px;
+    margin-left: -58%;
     color: #4CAF50;
 }
 
 header button {
     width: 150px;
     height: 150px;
+    transition: 0.7s;
 }
 
 header button:active{
     transform: scale(1);
+    transform: rotate(0deg);
+    transition: 0s;
+}
+header button:hover{
+    transform: scale(1);
     transform: rotate(45deg);
-    transition: 0.3s;
+    transition: 0.8s;
 }
 
-header .material-icons{
+header span.material-icons{
     color: #252525;
+}
+
+header img {
+    height: 120px;
+    margin: 30px;
 }
 
 footer {
@@ -99,13 +110,13 @@ footer {
     margin-bottom: -1px;
 }
 
-.progress-status {
+div#progress-status {
     width: 100%;
     background-color: #dddddd;
     height: 25%;
 }
 
-.progress-bar-text {
+p#global_progress-text {
     width: 100%;
     height: 0%;
     margin: 0;
@@ -114,7 +125,7 @@ footer {
     text-align: center;
 }
 
-.progress-bar {
+p#global_progress {
     height: 100%;
     margin: 0;
     background-color: #4CAF50;
@@ -143,16 +154,29 @@ nav button:active {
     transition: 0.2s;
 }
 
-nav .material-icons{
+nav span.material-icons{
     color: white;
 }
 
-.pages{
+section.pages{
     margin: 10px 8px 25% 8px;
 }
 
 @media (max-width: 1080px) and (max-height: 1920px) {
     footer {
        height: 10%;
+    }
+    header button:active{
+        transform: scale(1);
+        transform: rotate(45deg);
+        transition: 0.3s;
+    }
+    header button:hover{
+        transform: scale(1);
+        transform: rotate(0deg);
+        transition: 0s;
+    }
+    header button {
+        transition: 0.3s;
     }
 }

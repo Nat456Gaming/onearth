@@ -14,6 +14,7 @@
 	</head>
 	<body>
         <header>
+            <img src="icon.png" alt="">
             <h1>Onearth</h1>
             <button onclick="show('settings')"><span class="material-icons">settings</span></button>
         </header>
@@ -23,9 +24,9 @@
             }
         ?>
         <footer>
-            <div class="progress-status">
-                <p id="global_progress-text" class="progress-bar-text">0%</p>
-                <p id="global_progress" class="progress-bar" style="width: 0%"></p>
+            <div id="progress-status">
+                <p id="global_progress-text">0%</p>
+                <p id="global_progress" style="width: 0%"></p>
             </div>
             <nav>
                 <button onclick="show('home')"><span class="material-icons">home</span></button>

@@ -1,6 +1,6 @@
-window.onload = function(){
-	document.cookie = "cookie=Hi, I am a cookie !";
-}
+window.onload = function () {
+	document.cookie = setCookie("yo", "un msg", 1);//this cookie will be delete in 1 day
+};
 
 /**
  * @param {number} pourcent - the % to show
@@ -96,26 +96,66 @@ function show(page) {
  * no param
  */
 function search() {
-	alert("You searched: " + document.getElementById("search-form").elements[0].value);
+	let tab = "challenge";
+	if (document.getElementById("people").style.display === "block") {
+		tab = "people";
+	}
+	return alert("You searched : " + document.getElementById("search-form").elements[0].value + "\nIn tab : " + tab);
 }
 
 /**
- * @param {boolean} page - true for challenge
+ * @param {boolean} page - true for challenge false for people
  */
-function tab(selection){
+function tab(selection) {
 	let challenge = document.getElementById("challenges-tab");
 	let people = document.getElementById("people-tab");
 	let challenge_div = document.getElementById("challenges");
 	let people_div = document.getElementById("people");
-	if (selection){
+	if (selection) {
 		challenge.style.border = "";
 		people.style.border = "none";
 		challenge_div.style.display = "block";
 		people_div.style.display = "none";
-	}else{
+	} else {
 		challenge.style.border = "none";
 		people.style.border = "";
 		challenge_div.style.display = "none";
 		people_div.style.display = "block";
 	}
+	return;
+}
+
+/**
+ * @param {string} cName - the name of the cookie
+ * @param {string} cValue - the value of the cookie
+ * @param {number} exDays - the time in day for expires of the cookie
+ */
+function setCookie(cName, cValue, exDays = 1) {
+	const d = new Date();
+	d.setTime(d.getTime() + exDays * 24 * 60 * 60 * 1000);
+	document.cookie = cName + "=" + cValue + ";" + "expires=" + d.toUTCString() + ";path=/html";
+}
+
+/**
+ * @param {string} cName - the name of the cookie
+ */
+function getCookie(cName) {
+	let decodedCookie = decodeURIComponent(document.cookie);
+	let ca = decodedCookie.split(";");
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == " ") {
+			c = c.substring(1);
+		}
+		if (c.indexOf(cName) == 0) {
+			return c.substring(cName.length + 1, c.length);
+		}
+	}
+	return "";
+}
+/**
+ * @param {string} cName - the name of the cookie
+ */
+function delCookie(cName) {
+	document.cookie = cName + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/html";
 }
