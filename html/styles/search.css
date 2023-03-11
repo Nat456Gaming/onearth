@@ -8,6 +8,7 @@ div#search-container {
 form#search-form{
     height: 100%;
     width: 100%;
+    margin: 0 40px 0 10px;
 }
 
 form#search-form input{

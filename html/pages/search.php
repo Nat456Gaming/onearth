@@ -1,6 +1,6 @@
 <section id="search" class="pages" style="display: none">
     <div id="search-container">
-        <form onSubmit="search(); return false;" id="search-form" style="margin: 0 40px 0 10px;">
+        <form onSubmit="search(); return false;" id="search-form">
             <input type="text" placeholder="Search ..." name="search-bar">
         </form>
         <button onclick="search()" id="srh-button" style="margin: 0 10px 0 0;">
