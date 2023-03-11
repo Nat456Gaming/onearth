@@ -1,3 +1,7 @@
+window.onload = function(){
+	document.cookie = "cookie=Hi, I am a cookie !";
+}
+
 /**
  * @param {number} pourcent - the % to show
  */
@@ -57,7 +61,6 @@ function goal_progress(goal, nb = 1) {
 					} while (i < btn.length);
 					i = 0;
 					let done = document.getElementsByClassName("done")[0].getElementsByClassName("sdg-button goal" + goal);
-					console.log(document.getElementsByClassName("done"));
 					do {
 						done[i].style.display = "block";
 						i++;
@@ -94,4 +97,25 @@ function show(page) {
  */
 function search() {
 	alert("You searched: " + document.getElementById("search-form").elements[0].value);
+}
+
+/**
+ * @param {boolean} page - true for challenge
+ */
+function tab(selection){
+	let challenge = document.getElementById("challenges-tab");
+	let people = document.getElementById("people-tab");
+	let challenge_div = document.getElementById("challenges");
+	let people_div = document.getElementById("people");
+	if (selection){
+		challenge.style.border = "";
+		people.style.border = "none";
+		challenge_div.style.display = "block";
+		people_div.style.display = "none";
+	}else{
+		challenge.style.border = "none";
+		people.style.border = "";
+		challenge_div.style.display = "none";
+		people_div.style.display = "block";
+	}
 }

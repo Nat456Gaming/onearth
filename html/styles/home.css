@@ -1,11 +1,12 @@
 .done .material-icons {
-   transform: translateY(180px) scale(5);
+   transform: translateY(200px);
    color: rgb(33, 95, 35);
    display: flex;
    z-index: 8;
    margin: 0;  
    height: 0px;
    width: 0px;
+   font-size: 100px;
 }
 
 .flex-container {
