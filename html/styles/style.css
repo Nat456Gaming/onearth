@@ -18,7 +18,7 @@ section {
 h1 {
 	font-size: 600%;
 	font-family: arial;
-    margin: 0 0 0 20px;
+    margin: 0;
 }
 
 h2 {
@@ -66,9 +66,20 @@ header {
     background-color: #dddddd;
 }
 
+#title{
+    margin: 0 0 0 20px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 header h1 {
-    margin-left: -58%;
-    color: #4CAF50;
+    color: #008100;
+}
+
+header img {
+    height: 64px;
+    z-index: 5;
 }
 
 header button {
@@ -90,11 +101,6 @@ header button:hover{
 
 header span.material-icons{
     color: #252525;
-}
-
-header img {
-    height: 120px;
-    margin: 30px;
 }
 
 footer {

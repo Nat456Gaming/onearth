@@ -9,13 +9,19 @@
             }
         ?>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <script type="text/javascript" src="javascript.js"></script>
+        <?php //load all the javascript files
+            foreach (array_filter(glob('./javascript/*'), 'is_file') as $file){
+                echo '<script type="text/javascript" src="javascript/'.basename($file).'"></script>';
+            }
+        ?>
         <noscript><p class="noscript">You need to allow javascript to use this website !</p></noscript>
 	</head>
 	<body>
         <header>
-            <img src="icon.png" alt="">
-            <h1>Onearth</h1>
+            <div id="title">
+                <img src="icon.png" alt="Onearth Logo">
+                <h1>nearth</h1>
+            </div>
             <button onclick="show('settings')"><span class="material-icons">settings</span></button>
         </header>
         <?php //load all the pages files
