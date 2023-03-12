@@ -1,5 +1,5 @@
 window.onload = function () {
-	setCookie("Cookie", "The cake is a lie", 9999);//this cookie will be delete in 1 day
+	setCookie("Cookie", "The cake is a lie", 1);//this cookie will be delete in 1 day
 };
 
 /**

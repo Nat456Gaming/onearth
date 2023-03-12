@@ -14,7 +14,7 @@
                 echo '<script type="text/javascript" src="javascript/'.basename($file).'"></script>';
             }
         ?>
-        <noscript><p class="noscript">You need to allow javascript to use this website !</p></noscript>
+        <noscript><p id="noscript">You need to allow javascript to use this website !</p></noscript>
 	</head>
 	<body>
         <header>
