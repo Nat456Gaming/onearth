@@ -12,6 +12,7 @@
                 $i ++ ;
             }
         ?>
+        <div class="goal-spacer"></div>
     </div>
     <h2>For you</h2>
     <div class="flex-container">
@@ -26,6 +27,7 @@
                 $i ++ ;
             }
         ?>
+        <div class="goal-spacer"></div>
     </div>
     <h2>Done</h2>
     <div class="flex-container done">
@@ -40,5 +42,6 @@
                 $i++;
             }
         ?>
+        <div class="goal-spacer"></div>
     </div>
 </section>

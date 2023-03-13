@@ -10,7 +10,7 @@
         </div>
         <div id="search-tab">
             <button onclick="tab(true)">
-                <h3 id="challenges-tab" style="border-bottom: 10px solid black;">Challenges</h3>
+                <h3 id="challenges-tab">Challenges</h3>
             </button>
             <button onclick="tab(false)">
                 <h3 id="people-tab" style="border: none;">People</h3>

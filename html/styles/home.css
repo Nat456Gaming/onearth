@@ -19,6 +19,10 @@ div.flex-container {
    overflow-x: scroll;
 }
 
+.goal-spacer{
+   height: 360px;
+}
+
 img.sdg-pict {
    max-width: 300px;
    max-height: 300px;

@@ -19,7 +19,7 @@
 	<body>
         <header>
             <div id="title">
-                <img src="icon.png" alt="Onearth Logo">
+                <img src="icon.png" alt="O">
                 <h1>nearth</h1>
             </div>
             <button onclick="show('settings')"><span class="material-icons">settings</span></button>
