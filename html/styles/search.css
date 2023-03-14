@@ -2,6 +2,7 @@ div#head-bar{
     display: flex;
     flex-direction: column;
     color: red;
+    margin-bottom: 20px;
 }
 
 div#search-container {
@@ -28,6 +29,7 @@ form#search-form input{
     border-radius: 20px;
     border: solid black 2px;
 }
+
 button#srh-button {
     border-radius: 20px;
     border: solid black 2px;
@@ -49,4 +51,41 @@ h3{
     color: black;
     margin: 10px 0 10px 0;
     border-bottom: 10px solid black;
+}
+
+#result_page{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search-result{
+    height: 300px;
+    width: 90%;
+    border-radius: 20px;
+    border: solid black 2px;
+    padding: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+img.result-img{
+    max-height: 270px;
+    max-width: 270px;
+    border-radius: 10px
+}
+
+.text-result{
+    width: 90%;
+    height: 90%;
+    margin: 20px;
+    display: flex;
+}
+
+.text-result h4{
+    font-size: 300%;
+	font-family: arial;
+    color: black;
 }

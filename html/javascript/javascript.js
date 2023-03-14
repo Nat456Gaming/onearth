@@ -108,18 +108,12 @@ function search() {
 function tab(selection) {
 	let challenge = document.getElementById("challenges-tab");
 	let people = document.getElementById("people-tab");
-	let challenge_div = document.getElementById("challenges");
-	let people_div = document.getElementById("people");
 	if (selection) {
 		challenge.style.border = "";
 		people.style.border = "none";
-		challenge_div.style.display = "block";
-		people_div.style.display = "none";
 	} else {
 		challenge.style.border = "none";
 		people.style.border = "";
-		challenge_div.style.display = "none";
-		people_div.style.display = "block";
 	}
 	return;
 }

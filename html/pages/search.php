@@ -18,10 +18,12 @@
         </div>
     </div>
 
-    <div id="challenges" style="display: block;">
-        <p>Challenges</p>
-    </div>
-    <div id="people" style="display: none;">
-        <p>People</p>
+    <div id="result_page">
+        <button class="search-result">
+            <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-01.jpg" class="result-img"/>
+            <div class="text-result">
+                <h4>Challenge N°1: No povrety</h4>
+            </div>
+        </button>
     </div>
 </section>
