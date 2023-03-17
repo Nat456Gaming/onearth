@@ -1,3 +1,7 @@
+#home h2{
+   margin: 40px 0 20px 50px;
+}
+
 div.done span.material-icons {
    transform: translateY(200px);
    color: rgb(33, 95, 35);

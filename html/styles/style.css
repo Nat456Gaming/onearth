@@ -18,15 +18,29 @@ section {
 h1 {
 	font-size: 600%;
 	font-family: arial;
+    color: black;
     margin: 0;
 }
 
 h2 {
 	font-size: 500%;
 	font-family: arial;
-    margin-left: 50px;
-    margin-bottom: 20px;
-    margin-top: 40px;
+    color: black;
+    margin: 0;
+}
+
+h3{
+    font-size: 400%;
+	font-family: arial;
+    color: black;
+    margin: 0;
+}
+
+h4{
+    font-size: 300%;
+	font-family: arial;
+    color: black;
+    margin: 0;
 }
 
 p {

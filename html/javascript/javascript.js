@@ -94,16 +94,16 @@ function show(page) {
 function search() {
 	let search_value = document.getElementById("search-form").elements[0].value;
 	if(search_value != ""){
-		let tab = "challenge";
-		if (document.getElementById("people").style.display === "block") {
-			tab = "people";
+		let tab = "people";
+		if (document.getElementById("people-tab").style.border === "none") {
+			tab = "challenge";
 		}
 		return alert("You searched : " + search_value + "\nIn tab : " + tab);
 	}
 }
 
 /**
- * @param {boolean} page - true for challenge false for people
+ * @param {boolean} page - true for challenge; false for people
  */
 function tab(selection) {
 	let challenge = document.getElementById("challenges-tab");
@@ -116,4 +116,12 @@ function tab(selection) {
 		people.style.border = "";
 	}
 	return;
+}
+
+/**
+ * @param {boolean} page - Show or not Submit button
+ */
+function settings_update(update){
+	if (update) document.getElementById("settings-submit").style.display = "block";
+	else document.getElementById("settings-submit").style.display = "none";
 }

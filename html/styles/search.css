@@ -12,6 +12,7 @@ div#search-container {
     flex-direction: row;
     align-items: center;
 }
+
 form#search-form{
     height: 100%;
     width: 100%;
@@ -30,25 +31,22 @@ form#search-form input{
     border: solid black 2px;
 }
 
-button#srh-button {
+#head-bar #srh-button {
     border-radius: 20px;
     border: solid black 2px;
 }
 
-button#srh-button span.material-icons{
+#head-bar .material-icons{
     color:black;
 }
 
-div#search-tab{
+#head-bar #search-tab{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-h3{
-    font-size: 500%;
-	font-family: arial;
-    color: black;
+#head-bar h2{
     margin: 10px 0 10px 0;
     border-bottom: 10px solid black;
 }
@@ -66,26 +64,44 @@ h3{
     border-radius: 20px;
     border: solid black 2px;
     padding: 13px;
+    margin: 0 0 20px 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-img.result-img{
+.search-result.profile{
+    height: 200px;
+}
+
+.search-result .result-img{
     max-height: 270px;
     max-width: 270px;
     border-radius: 10px
 }
 
-.text-result{
+.search-result .result-profile-img{
+    max-height: 170px;
+    max-width: 170px;
+    border-radius: 10px
+}
+
+.search-result .text-result{
     width: 90%;
     height: 90%;
     margin: 20px;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
-.text-result h4{
-    font-size: 300%;
-	font-family: arial;
-    color: black;
+.search-result .text-result h3{
+    margin: 0 0 5px 0;
+    text-align: left;
+}
+
+.search-result.profile h3{
+    margin: 0 50px 0 50px;
+    text-align: center;
 }

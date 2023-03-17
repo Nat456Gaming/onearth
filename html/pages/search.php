@@ -10,20 +10,25 @@
         </div>
         <div id="search-tab">
             <button onclick="tab(true)">
-                <h3 id="challenges-tab">Challenges</h3>
+                <h2 id="challenges-tab">Challenges</h2>
             </button>
             <button onclick="tab(false)">
-                <h3 id="people-tab" style="border: none;">People</h3>
+                <h2 id="people-tab" style="border: none;">People</h2>
             </button>
         </div>
     </div>
 
     <div id="result_page">
         <button class="search-result">
-            <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-01.jpg" class="result-img"/>
+            <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg" class="result-img"/>
             <div class="text-result">
-                <h4>Challenge N°1: No povrety</h4>
+                <h3>What if you were in an other gender?</h3>
+                <p>Write a short story about this idea...</p>
             </div>
+        </button>
+        <button class="search-result profile">
+            <img src="images/nat456.png" class="result-profile-img"/>
+            <h3>Nat456</h3>
         </button>
     </div>
 </section>
