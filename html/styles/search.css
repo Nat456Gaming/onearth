@@ -108,4 +108,6 @@ button.search-result.profile h3{
 
 div#people + div#challenges {
     display: none;
+    width: 100%;
+    height: 100%;
 }
