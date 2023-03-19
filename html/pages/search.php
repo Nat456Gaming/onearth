@@ -19,16 +19,20 @@
     </div>
 
     <div id="result_page">
-        <button class="search-result">
-            <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg" class="result-img"/>
-            <div class="text-result">
-                <h3>What if you were in an other gender?</h3>
-                <p>Write a short story about this idea...</p>
-            </div>
-        </button>
-        <button class="search-result profile">
-            <img src="images/nat456.png" class="result-profile-img"/>
-            <h3>Nat456</h3>
-        </button>
+        <div id="challenges" style="display: none">
+            <button class="search-result">
+                <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-05.jpg" class="result-img"/>
+                <div class="text-result">
+                    <h3>What if you were in an other gender?</h3>
+                    <p>Write a short story about this idea...</p>
+                </div>
+            </button>
+        </div>
+        <div id="people" style="display: none">
+            <button class="search-result profile">
+                <img src="images/nat456.png" class="result-profile-img"/>
+                <h3>Nat456</h3>
+            </button>
+        </div>
     </div>
 </section>

@@ -93,12 +93,15 @@ function show(page) {
  */
 function search() {
 	let search_value = document.getElementById("search-form").elements[0].value;
-	if(search_value != ""){
+	if (search_value != "") {
+		document.getElementById("people").style.display = "none";
+		document.getElementById("challenges").style.display = "none";
 		let tab = "people";
 		if (document.getElementById("people-tab").style.border === "none") {
-			tab = "challenge";
+			tab = "challenges";
 		}
-		return alert("You searched : " + search_value + "\nIn tab : " + tab);
+		document.getElementById(tab).style.display = "block";
+		alert("You searched : " + search_value + "\nIn tab : " + tab);
 	}
 }
 
@@ -106,8 +109,8 @@ function search() {
  * @param {boolean} page - true for challenge; false for people
  */
 function tab(selection) {
-	let challenge = document.getElementById("challenges-tab");
-	let people = document.getElementById("people-tab");
+	let challenge = document.getElementById("challenges-tab"),
+		people = document.getElementById("people-tab");
 	if (selection) {
 		challenge.style.border = "";
 		people.style.border = "none";
@@ -121,7 +124,7 @@ function tab(selection) {
 /**
  * @param {boolean} page - Show or not Submit button
  */
-function settings_update(update){
-	if (update) document.getElementById("settings-submit").style.display = "block";
-	else document.getElementById("settings-submit").style.display = "none";
+function settings_update(update) {
+	if (update) return (document.getElementById("settings-submit").style.display = "block");
+	else return (document.getElementById("settings-submit").style.display = "none");
 }
