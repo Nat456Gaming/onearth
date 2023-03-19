@@ -31,34 +31,34 @@ form#search-form input{
     border: solid black 2px;
 }
 
-#head-bar #srh-button {
+div#head-bar button#srh-button {
     border-radius: 20px;
     border: solid black 2px;
 }
 
-#head-bar .material-icons{
+div#head-bar span.material-icons{
     color:black;
 }
 
-#head-bar #search-tab{
+div#head-bar div#search-tab{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 }
 
-#head-bar h2{
+div#head-bar h2{
     margin: 10px 0 10px 0;
     border-bottom: 10px solid black;
 }
 
-#result_page{
+div#result_page{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 
-.search-result{
+button.search-result{
     height: 300px;
     width: 90%;
     border-radius: 20px;
@@ -70,23 +70,23 @@ form#search-form input{
     justify-content: flex-start;
 }
 
-.search-result.profile{
+button.search-result.profile{
     height: 200px;
 }
 
-.search-result .result-img{
+button.search-result img.result-img{
     max-height: 270px;
     max-width: 270px;
     border-radius: 10px
 }
 
-.search-result .result-profile-img{
+button.search-result img.result-profile-img{
     max-height: 170px;
     max-width: 170px;
     border-radius: 10px
 }
 
-.search-result .text-result{
+button.search-result div.text-result{
     width: 90%;
     height: 90%;
     margin: 20px;
@@ -96,12 +96,16 @@ form#search-form input{
     align-items: flex-start;
 }
 
-.search-result .text-result h3{
+button.search-result div.text-result h3{
     margin: 0 0 5px 0;
     text-align: left;
 }
 
-.search-result.profile h3{
+button.search-result.profile h3{
     margin: 0 50px 0 50px;
     text-align: center;
+}
+
+div#people + div#challenges {
+    display: none;
 }
