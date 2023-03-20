@@ -77,13 +77,13 @@ button.search-result.profile{
 button.search-result img.result-img{
     max-height: 270px;
     max-width: 270px;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 button.search-result img.result-profile-img{
     max-height: 170px;
     max-width: 170px;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 button.search-result div.text-result{
