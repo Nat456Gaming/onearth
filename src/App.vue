@@ -5,7 +5,14 @@ import MenuFooter from './components/FooterMenu.vue'
 </script>
 
 <template>
-  <MenuHeader class="fixed h-[10%]"/>
-  <RouterView class="h-[90%] top-[10%]"/>
+  <MenuHeader />
+  <RouterView />
   <MenuFooter />
 </template>
+
+<style scoped>
+  section {
+    position: static;
+    margin-top: 18%;
+  }
+</style>

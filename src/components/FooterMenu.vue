@@ -7,7 +7,7 @@
 </template>
 
 <style scoped>
-   nav RouterLink:active {
+   nav a:active {
       transform: scale(0.90);
       transition: 0.2s;
    }
