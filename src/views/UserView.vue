@@ -33,8 +33,8 @@
                 <p class="text-center">0 friends</p>
                 <button>Add to my friends</button>
             </div>
-            <div>
-                <p v-for="badge in badgeList">{{   badge.name }}</p>
+            <div class="flex justify-center mt-1">
+                <p class="bg-slate-400 rounded-3xl px-4 py-2">{{ badge }}</p>
             </div>
             <div class="w-full mt-5 bg-slate-400 rounded-2xl p-3">
                 <p>{{ bio }}</p>
@@ -54,7 +54,7 @@ export default {
         username: "",
         pictureLink: "",
         bio: "",
-        badgeList: [],
+        badge: "membre",
     }
   },
   mounted() {
@@ -66,14 +66,7 @@ export default {
         this.username = userResApi.data[0].username;
         this.pictureLink = userResApi.data[0].picturelink;
         this.bio = userResApi.data[0].bio;
-
-        if (userResApi.data[0].username == "Cleboost") {
-            this.badgeList = [
-                {
-                    name: "developpeur"
-                }
-            ]
-        }
+        this.badge = userResApi.data[0].badge;
     }
   },
 }
