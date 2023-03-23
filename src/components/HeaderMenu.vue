@@ -13,29 +13,29 @@
 </template>
 
 <style scoped>
-   @media (max-width: 1080px) and (max-height: 1920px) {
-      header a:active{
-         transform: scale(1);
-         transform: rotate(45deg);
-         transition: 0.3s;
-      }
-      header a:hover{
-         transform: scale(1);
-         transform: rotate(0deg);
-         transition: 0s;
-      }
-      header a {
-         transition: 0.3s;
-      }
-   }
-   header a:active{
+  @media (max-width: 1080px) and (max-height: 1920px) {
+    header a:active{
+      transform: scale(1);
+      transform: rotate(45deg);
+      transition: 0.3s;
+    }
+    header a:hover{
       transform: scale(1);
       transform: rotate(0deg);
       transition: 0s;
     }
-    header a:hover{
-      transform: scale(1);
-      transform: rotate(45deg);
-      transition: 0.8s;
-   }
+    header a {
+      transition: 0.3s;
+    }
+  }
+  header a:active{
+    transform: scale(1);
+    transform: rotate(0deg);
+    transition: 0s;
+  }
+  header a:hover{
+    transform: scale(1);
+    transform: rotate(45deg);
+    transition: 0.8s;
+  }
 </style>
