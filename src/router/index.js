@@ -11,17 +11,31 @@ const router = createRouter({
     {
       path: '/settings',
       name: 'settings',
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/SettingsView.vue')
     },
     {
       path: '/search',
-      name: 'search',
-      component: () => import('../views/SearchView.vue')
+      redirect: '/search/challenge'
+    },
+    {
+      path: '/search/challenge',
+      name: 'searchChallenge',
+      component: () => import('../views/SearchChallengeView.vue')
+    },
+    {
+      path: '/search/user',
+      name: 'searchUser',
+      component: () => import('../views/SearchUserView.vue')
     },
     {
       path: '/user',
-      name: 'settings',
+      name: 'user',
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/friends',
+      name: 'friends',
+      component: () => import('../views/FriendsView.vue')
     }
   ]
 })
