@@ -9,19 +9,19 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue')
     },
     {
-      path: '/settings',
-      name: 'settings',
-      component: () => import('../views/AboutView.vue')
+      path: '/search/challenge',
+      name: 'searchChallenge',
+      component: () => import('../views/SearchChallengeView.vue')
     },
     {
-      path: '/search',
-      name: 'search',
-      component: () => import('../views/SearchView.vue')
+      path: '/search/user',
+      name: 'searchUser',
+      component: () => import('../views/SearchUserView.vue')
     },
     {
-      path: '/user',
-      name: 'settings',
-      component: () => import('../views/AboutView.vue')
+      path: '/user/:id',
+      name: 'user',
+      component: () => import('../views/UserView.vue')
     }
   ]
 })

@@ -3,6 +3,6 @@
 
 <template>
   <section>
-    <h1>Contenue de la page</h1>
+    <h1 class="text-xl">Contenue de la page</h1>
   </section>
 </template>
