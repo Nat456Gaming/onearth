@@ -23,6 +23,7 @@ import MenuFooter from './components/FooterMenu.vue'
     margin-top: 25%;
     margin-left: 3%;
     margin-right: 3%;
+    margin-bottom: 0%;
   }
 }
 </style>
