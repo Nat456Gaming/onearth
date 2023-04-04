@@ -12,6 +12,8 @@ import MenuFooter from './components/FooterMenu.vue'
 
 <style>
   section {
+    padding: 1%;
+    width: 95%;
     position: static;
     margin-top: 7%;
     margin-left: 4%;
