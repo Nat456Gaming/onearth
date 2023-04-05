@@ -25,6 +25,7 @@
   }
   header a {
       transition: 0.3s;
+      margin-right: 5%;
   }
   @media (max-width: 1080px) and (max-height: 1920px) {
     header a:active{
