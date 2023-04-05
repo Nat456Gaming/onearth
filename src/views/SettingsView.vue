@@ -3,6 +3,9 @@
 </script> -->
 
 <template>
+	<!-- <img src="https://www.gif-maniac.com/gifs/51/50643.gif" class=" mt-44 h-[55%] w-full" v-bind:class="{ hidden: !loading }"> -->
+
+	<div class="bb z-50" v-bind:class="{ hidden: !loading }"></div>
 	<!-- Toutes les bannière  -->
 	<!-- connection reussie -->
 	<div class="alert alert-success shadow-lg mt-[20%]" v-bind:class="{ hidden: !succesMessage }">
@@ -20,7 +23,7 @@
 	</div>
 
 	<section class="flex flex-col">
-		<h1>This page is in developpement !</h1>
+		<!-- <h1>This page is in developpement !</h1> -->
 		<!-- Quand pas login -->
 		<div v-bind:class="{ hidden: curentlyLogin }">
 			<form onsubmit="return false;" id="connect" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
@@ -36,16 +39,25 @@
 		<!-- Quand login -->
 		<div v-bind:class="{ hidden: !curentlyLogin }">
 			<form onsubmit="return false;" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
-				<div class="form-control">
-					<label class="label cursor-pointer">
-						<span class="label-text mr-4 text-xl">Settings1</span>
-						<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked />
-					</label>
+				<div class="h-full flex flex-col justify-end">
+					<div class="form-control">
+						<label class="label cursor-pointer">
+							<span class="label-text mr-4 text-xl">Compte privé</span>
+							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked />
+						</label>
+					</div>
+					<div class="form-control">
+						<label class="label cursor-pointer">
+							<span class="label-text mr-4 text-xl">Settings1</span>
+							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked />
+						</label>
+					</div>
 				</div>
 				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" />
 			</form>
 			<div class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
 				<button class="m-2 w-1/2 rounded-md bg-orange-600 p-2 active:bg-orange-700" @click="unLogin()">Disconnect</button>
+				<!-- <button class="m-2 w-1/2 rounded-md bg-orange-600 p-2 active:bg-orange-700" @click="unLogin()">Supprimer mon compte</button> -->
 			</div>
 		</div>
 	</section>
@@ -59,14 +71,14 @@ export default {
 		return {
 			usernameInput: "",
 			passwordInput: "",
-			curentlyLogin: false,
+			curentlyLogin: true,
 			succesMessage: false,
-			errorMessage: true,
+			errorMessage: false,
+			loading: false,
 		};
 	},
 	mounted() {
-		//By default, the user is logged in
-		this.curentlyLogin = false;
+		this.curentlyLogin = true;
 		this.verifLogin();
 	},
 	methods: {
@@ -88,21 +100,27 @@ export default {
 			}
 		},
 		async login() {
+			console.log("envoie request en cours");
+			this.loading = true;
 			const loginResApi = await axios.get("http://api.cleboost.ovh/onearth/user/getToken.php?username=" + this.usernameInput + "&password=" + this.passwordInput);
 			console.log(loginResApi.data);
+			this.loading = false;
 			if (loginResApi.data.state == "true") {
 				this.curentlyLogin = true;
 				localStorage.setItem("token", loginResApi.data.token);
 				console.log("log with " + loginResApi.data.token);
+				// Message de succes
 			} else {
 				this.curentlyLogin = false;
+				// Message d'erreur
 			}
 		},
 		async unLogin() {
 			const loginResApi = await axios.get("http://api.cleboost.ovh/onearth/user/unLogin.php?token=" + localStorage.getItem("token"));
 			if (loginResApi.data.state == "true") {
-				this.curentlyLogin = false;
 				localStorage.removeItem("token");
+				this.curentlyLogin = false;
+				// Message de succes
 			} else {
 				// Message d'erreur
 			}
@@ -110,3 +128,70 @@ export default {
 	},
 };
 </script>
+
+<style scoped lang="scss">
+$anime-time: 5s;
+
+$box-size: 300px;
+$clip-distance: .05;
+$clip-size: $box-size * (1 + $clip-distance * 2);
+$path-width: 2px;
+
+$main-color: #69ca62;
+
+$codepen-logo-path: url('http://localhost:5173/icon.png');
+
+%full-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bb {
+  @extend %full-fill;
+  width: $box-size;
+  height: $box-size;
+  margin: auto;
+  background: $codepen-logo-path no-repeat 50% / 70% rgba(#000, .1);
+  color: $main-color;
+  box-shadow: inset 0 0 0 1px rgba($main-color, .5);
+
+  &::before,
+  &::after {
+    @extend %full-fill;
+    content: '';
+    z-index: -1;
+    margin: -1 * $clip-distance * 100%;
+    box-shadow: inset 0 0 0 $path-width; 
+    animation: clipMe $anime-time linear infinite;
+  }
+
+  &::before {
+    animation-delay: $anime-time * -.5;
+  }
+
+  // for debug
+//   &:hover {
+//     &::after,
+//     &::before {
+//       background-color: rgba(#f00, .3);
+//     }
+//   }
+
+}
+
+@keyframes clipMe {
+  0%, 100% {clip: rect(0px, $clip-size, $path-width, 0px); }
+  25% {clip: rect(0px, $path-width, $clip-size, 0px); }
+  50% {clip: rect($clip-size - $path-width, $clip-size, $clip-size, 0px); }
+  75% {clip: rect(0px, $clip-size, $clip-size, $clip-size - $path-width); }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+</style>
