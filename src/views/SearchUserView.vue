@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<section class="p-4">
-		<div v-bind:class="{ hideProgress: isNotProgress }" class="w-full justify-center">
+		<div v-bind:class="{ hideProgress: isNotProgress }" class="w-full justify-center z-0">
 			<h1 class="w-full text-center text-xl">Loading ...</h1>
 			<progress class="progress w-full h-8 mt-3"></progress>
 		</div>
@@ -84,7 +84,7 @@ export default defineComponent({
 				this.userList = [
 					{
 						id: 1,
-						username: "There is no user call " + this.searchBar,
+						username: "There is no user called " + this.searchBar,
 						picturelink: "http://clipart-library.com/images_k/prohibited-sign-transparent/prohibited-sign-transparent-2.jpg",
 					},
 				];

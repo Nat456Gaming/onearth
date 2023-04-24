@@ -50,6 +50,7 @@
 							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked />
 						</label>
 					</div>
+
 					<div class="form-control">
 						<label class="label cursor-pointer">
 							<span class="label-text mr-4 text-xl">Settings1</span>
@@ -57,7 +58,7 @@
 						</label>
 					</div>
 				</div>
-				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" />
+				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="usersett()" />
 			</form>
 			<form onsubmit="return false;" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
 				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new username" maxlength="30" size="3" />
@@ -175,7 +176,7 @@ export default {
 			}
 
 			//Vérifie avec regex si les pseudo n'ont pas de caractères spéciaux
-			if (!this.usernameInput.match(/^[a-zA-Z0-9]+$/)) {
+			if (!this.usernameInput.match(/^[a-zA-Z0-9_]{3,29}+$/)) {
 				this.errorMessage = "Your username can't have special characters";
 				this.errorMessageState = true;
 				setTimeout(() => {
@@ -208,9 +209,12 @@ export default {
 			if (this.usernameInput.length < 3 || this.usernameInput.length > 30) {
 				this.errorUsername = true;
 			}
-			if (!this.usernameInput.match(/^[a-zA-Z0-9]+$/)) {
+			if (!this.usernameInput.match(/^[a-zA-Z0-9_]{3,29}+$/)) {
 				this.errorUsername = true;
 			}
+		},
+		async usersett() {
+			console.log("loul");
 		},
 	},
 };
