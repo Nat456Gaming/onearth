@@ -35,8 +35,8 @@
 				<label for="password">Password :</label><br />
 				<input type="password" name="password" id="password" v-model="passwordInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your password" maxlength="100" size="3" @input="fillPassword()" v-bind:class="{ 'bg-red-200': errorPassword }"/>
 				<div class="w-full flex flex-raw justify-center text-xl">
-					<input type="submit" value="Sign in" class="m-3 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="login()" v-bind:disabled="errorUsername" v-bind:class="{ 'bg-red-200': errorUsername }" />
-					<input type="submit" value="Sign up" class="m-3 w-1/4 rounded-md bg-cyan-600 p-2 active:bg-cyan-700" @click="create()" v-bind:class="{ 'bg-red-200': errorUsername }" v-bind:disabled="errorUsername" />
+					<input type="submit" value="Sign in" class="m-3 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="login()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-200': errorUsername || errorPassword }" />
+					<input type="submit" value="Sign up" class="m-3 w-1/4 rounded-md bg-cyan-600 p-2 active:bg-cyan-700" @click="create()" v-bind:class="{ 'bg-red-200': errorUsername || errorPassword }" v-bind:disabled="errorUsername || errorPassword" />
 				</div>
 			</form>
 		</div>
@@ -181,7 +181,6 @@ export default {
 				}, 3000);
 				return;
 			}
-
 			//Valide le username
 			if (this.verifUserName(this.usernameInput)) {
 				this.errorMessage = "Your username is not valide !";
