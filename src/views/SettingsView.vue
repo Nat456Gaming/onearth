@@ -124,6 +124,11 @@ export default {
 			this.badge = userResApi.data[0].badge;
 		},
 		async login() {
+			this.fillUsername(this.usernameInput);
+			this.fillPassword(this.passwordInput);
+			if (this.errorPassword || this.errorUsername) {
+				return;
+			}
 			this.loading = true;
 			const loginResApi = await axios.get("http://api.cleboost.ovh/onearth/user/getToken.php?username=" + this.usernameInput + "&password=" + this.passwordInput);
 			this.loading = false;
