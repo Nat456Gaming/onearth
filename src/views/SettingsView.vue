@@ -31,9 +31,9 @@
 			<form onsubmit="return false;" id="connect" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
 				<h3>Connect or register to Onearth :</h3>
 				<label for="username">Username :</label><br />
-				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your username" maxlength="30" size="3" @input="verifDirectFill()" v-bind:class="{ 'bg-red-200': errorUsername }" />
+				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }" />
 				<label for="password">Password :</label><br />
-				<input type="password" name="password" id="password" v-model="passwordInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your password" maxlength="100" size="3" />
+				<input type="password" name="password" id="password" v-model="passwordInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your password" maxlength="100" size="3" @input="fillPassword()" v-bind:class="{ 'bg-red-200': errorPassword }"/>
 				<div class="w-full flex flex-raw justify-center text-xl">
 					<input type="submit" value="Sign in" class="m-3 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="login()" v-bind:disabled="errorUsername" v-bind:class="{ 'bg-red-200': errorUsername }" />
 					<input type="submit" value="Sign up" class="m-3 w-1/4 rounded-md bg-cyan-600 p-2 active:bg-cyan-700" @click="create()" v-bind:class="{ 'bg-red-200': errorUsername }" v-bind:disabled="errorUsername" />
@@ -83,12 +83,14 @@ export default {
 			passwordInput: "",
 			username: "",
 			bioInput: "",
+			pirvateInput: false,
 			curentlyLogin: true,
 			succesMessageState: false,
 			succesMessage: "Wait a text",
 			errorMessageState: false,
 			errorMessage: "",
 			errorUsername: true,
+			errorPassword: true,
 			loading: false,
 		};
 	},
@@ -175,16 +177,24 @@ export default {
 				return;
 			}
 
-			//Vérifie avec regex si les pseudo n'ont pas de caractères spéciaux
-			if (!this.usernameInput.match(/^[a-zA-Z0-9_]{3,29}+$/)) {
-				this.errorMessage = "Your username can't have special characters";
+			//Valide le username
+			if (this.verifUserName(this.usernameInput)) {
+				this.errorMessage = "Your username is not valide !";
 				this.errorMessageState = true;
 				setTimeout(() => {
 					this.errorMessageState = false;
 				}, 3000);
 				return;
 			}
-
+			//Valide le mdp
+			if (this.verifpassword(this.passwordInput)) {
+				this.errorMessage = "Your password is noit valide !";
+				this.errorMessageState = true;
+				setTimeout(() => {
+					this.errorMessageState = false;
+				}, 3000);
+				return;
+			}
 			this.loading = true;
 			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/createAcount.php?username=${this.usernameInput}&password=${this.passwordInput}`);
 			this.loading = false;
@@ -203,19 +213,24 @@ export default {
 				}, 3000);
 			}
 		},
-		async verifDirectFill() {
+		async fillUsername() {
 			//Vérifie avec regex si les pseudo n'ont pas de caractères spéciaux et le nombre de caractères
-			this.errorUsername = false;
-			if (this.usernameInput.length < 3 || this.usernameInput.length > 30) {
-				this.errorUsername = true;
-			}
-			if (!this.usernameInput.match(/^[a-zA-Z0-9_]{3,29}+$/)) {
-				this.errorUsername = true;
-			}
+			return this.errorUsername = !this.verifUserName(this.usernameInput);
+		},
+		async fillPassword() {
+			//Vérifie avec regex si les mdp n'ont pas de caractères spéciaux et le nombre de caractères
+			return this.errorPassword = !this.verifPassword(this.passwordInput);
 		},
 		async usersett() {
 			console.log("loul");
 		},
+		//renvoi true si pas valide
+		async verifUserName(username) {
+			return !username.match(/^[\w]{3,29}/);
+		},
+		async verifPassword(password) {
+			return !password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,99}/);
+		}
 	},
 };
 </script>
