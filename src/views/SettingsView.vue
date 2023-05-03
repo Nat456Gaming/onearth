@@ -31,7 +31,7 @@
 			<form onsubmit="return false;" id="connect" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
 				<h3>Connect or register to Onearth :</h3>
 				<label for="username">Username :</label><br />
-				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }" />
+				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }"/>
 				<label for="password">Password :</label><br />
 				<input type="password" name="password" id="password" v-model="passwordInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your password" maxlength="100" size="3" @input="fillPassword()" v-bind:class="{ 'bg-red-200': errorPassword }"/>
 				<div class="w-full flex flex-raw justify-center text-xl">
@@ -58,7 +58,7 @@
 						</label>
 					</div>
 				</div>
-				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="usersett()" />
+				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="userMaj()" />
 			</form>
 			<form onsubmit="return false;" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
 				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new username" maxlength="30" size="3" />
@@ -172,6 +172,11 @@ export default {
 			}
 		},
 		async create() {
+			this.fillUsername(this.usernameInput);
+			this.fillPassword(this.passwordInput);
+			if (this.errorPassword || this.errorUsername) {
+				return;
+			}
 			//Vérifie si les champs sont remplis
 			if (this.usernameInput == "" || this.passwordInput == "") {
 				this.errorMessage = "Please fill all the fields";
@@ -191,8 +196,8 @@ export default {
 				return;
 			}
 			//Valide le mdp
-			if (this.verifpassword(this.passwordInput)) {
-				this.errorMessage = "Your password is noit valide !";
+			if (this.verifPassword(this.passwordInput)) {
+				this.errorMessage = "Your password is noit valide !\n(Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character)";
 				this.errorMessageState = true;
 				setTimeout(() => {
 					this.errorMessageState = false;
@@ -219,21 +224,21 @@ export default {
 		},
 		async fillUsername() {
 			//Vérifie avec regex si les pseudo n'ont pas de caractères spéciaux et le nombre de caractères
-			return this.errorUsername = !this.verifUserName(this.usernameInput);
+			return this.errorUsername = this.verifUserName(this.usernameInput);
 		},
 		async fillPassword() {
 			//Vérifie avec regex si les mdp n'ont pas de caractères spéciaux et le nombre de caractères
-			return this.errorPassword = !this.verifPassword(this.passwordInput);
+			return this.errorPassword = this.verifPassword(this.passwordInput);
 		},
-		async usersett() {
+		async userMaj() {
 			console.log("loul");
 		},
 		//renvoi true si pas valide
 		async verifUserName(username) {
-			return !username.match(/^[\w]{3,29}/);
+			return !username.match(/[\w]{3,29}/gm);
 		},
 		async verifPassword(password) {
-			return !password.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,99}/);
+			return !password.match(/[a-zA-Z0-9#?!@$%^&*-_]{8,99}/gm)///(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,99}/gm);///[a-zA-Z0-9#?!@$%^&*-_]
 		}
 	},
 };
