@@ -19,7 +19,8 @@
 			<h1 class="w-full text-center text-xl">Loading ...</h1>
 			<progress class="progress w-full h-8 mt-3"></progress>
 		</div>
-		<div v-for="user in userList" class="rounded-xl border-solid border-2 border-black duration-200 hover:scale-101 hover:shadow-xl w-full p-2 flex flex-col mt-5">
+		<div class="w-full h-full flex flex-col mb-[10%]">
+			<div v-for="user in userList" class="rounded-xl border-solid border-2 border-black duration-200 hover:scale-101 hover:shadow-xl w-11/12 p-2 flex mt-5">
 			<router-link :to="{ name: 'user', params: { id: user.username } }" class="flex flex-row space-x-4 p-3">
 				<div class="avatar static">
 					<div class="w-24 rounded-full ring ring-black ring-offset-base-100 ring-offset-0">
@@ -32,6 +33,7 @@
 					<h1 class="text-2xl pl-4">> {{ user.badge }}</h1>
 				</div>
 			</router-link>
+		</div>
 		</div>
 	</section>
 </template>
