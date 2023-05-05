@@ -31,12 +31,12 @@
 			<form onsubmit="return false;" id="connect" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
 				<h3>Connect or register to Onearth :</h3>
 				<label for="username">Username :</label><br />
-				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }"/>
+				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }" />
 				<label for="password">Password :</label><br />
-				<input type="password" name="password" id="password" v-model="passwordInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your password" maxlength="100" size="3" @input="fillPassword()" v-bind:class="{ 'bg-red-200': errorPassword }"/>
+				<input type="password" name="password" id="password" v-model="passwordInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your password" maxlength="100" size="3" @input="fillPassword()" v-bind:class="{ 'bg-red-200': errorPassword }" />
 				<div class="w-full flex flex-raw justify-center text-xl">
-					<input type="submit" value="Sign in" class="m-3 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="login()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-200': errorUsername || errorPassword }" />
-					<input type="submit" value="Sign up" class="m-3 w-1/4 rounded-md bg-cyan-600 p-2 active:bg-cyan-700" @click="create()" v-bind:class="{ 'bg-red-200': errorUsername || errorPassword }" v-bind:disabled="errorUsername || errorPassword" />
+					<input type="submit" value="Sign in" class="m-3 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="login()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-600': errorUsername || errorPassword }" />
+					<input type="submit" value="Sign up" class="m-3 w-1/4 rounded-md bg-cyan-600 p-2 active:bg-cyan-700" @click="create()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-600': errorUsername || errorPassword }" />
 				</div>
 			</form>
 		</div>
@@ -86,7 +86,7 @@ export default {
 			pirvateInput: false,
 			curentlyLogin: true,
 			succesMessageState: false,
-			succesMessage: "Wait a text",
+			succesMessage: "",
 			errorMessageState: false,
 			errorMessage: "",
 			errorUsername: true,
@@ -104,7 +104,6 @@ export default {
 				this.curentlyLogin = false;
 				return;
 			}
-
 			const loginResApi = await axios.get(`https://api.cleboost.ovh/onearth/user/testLogin.php?token=${localStorage.getItem("token")}`);
 
 			if (loginResApi.data.state == "true") {
@@ -112,7 +111,8 @@ export default {
 				this.username = loginResApi.data.username;
 			} else {
 				this.curentlyLogin = false;
-				return localStorage.removeItem("token");
+				localStorage.removeItem("token");
+				return;
 			}
 
 			this.loading = true;
@@ -122,11 +122,13 @@ export default {
 			this.pictureLink = userResApi.data[0].picturelink;
 			this.bioInput = userResApi.data[0].bio;
 			this.badge = userResApi.data[0].badge;
+			return;
 		},
 		async login() {
 			this.fillUsername(this.usernameInput);
 			this.fillPassword(this.passwordInput);
 			if (this.errorPassword || this.errorUsername) {
+				this.errorMsg("Your username or Password is not valid ");
 				return;
 			}
 			this.loading = true;
@@ -135,118 +137,85 @@ export default {
 			if (loginResApi.data.state == "true") {
 				this.curentlyLogin = true;
 				localStorage.setItem("token", loginResApi.data.token);
-				this.succesMessage = "Connection is successfull !";
-				this.succesMessageState = true;
-				//Wait 3 sec
-				setTimeout(() => {
-					this.succesMessageState = false;
-				}, 3000);
-			} else {
-				this.errorMessage = "Error of login";
-				this.errorMessageState = true;
-				setTimeout(() => {
-					this.errorMessageState = false;
-				}, 3000);
-				this.curentlyLogin = false;
-				// Message d'erreur
+				return this.succesMsg("Connection is successfull !");
 			}
-			this.verifLogin();
+			this.curentlyLogin = false;
+			return this.errorMsg("An error occure when login in !");
 		},
 		async unLogin() {
 			const loginResApi = await axios.get("http://api.cleboost.ovh/onearth/user/unLogin.php?token=" + localStorage.getItem("token"));
 			if (loginResApi.data.state == "true") {
 				localStorage.removeItem("token");
 				this.curentlyLogin = false;
-				this.succesMessage = "You have been successfully disconnected !";
-				this.succesMessageState = true;
-				setTimeout(() => {
-					this.succesMessageState = false;
-				}, 3000);
-				// Message de succes
-			} else {
-				this.errorMessage = "Error of unlogin";
-				this.errorMessageState = true;
-				setTimeout(() => {
-					this.errorMessageState = false;
-				}, 3000);
+				return this.succesMsg("You have been successfully disconnected !");
 			}
+			return this.errorMsg("An error occure when unlogin !");
 		},
 		async create() {
-			this.fillUsername(this.usernameInput);
-			this.fillPassword(this.passwordInput);
-			if (this.errorPassword || this.errorUsername) {
-				return;
-			}
 			//Vérifie si les champs sont remplis
 			if (this.usernameInput == "" || this.passwordInput == "") {
-				this.errorMessage = "Please fill all the fields";
-				this.errorMessageState = true;
-				setTimeout(() => {
-					this.errorMessageState = false;
-				}, 3000);
-				return;
+				return this.errorMsg("Please fill all the fields !");
 			}
-			//Valide le username
-			if (this.verifUserName(this.usernameInput)) {
-				this.errorMessage = "Your username is not valide !";
-				this.errorMessageState = true;
-				setTimeout(() => {
-					this.errorMessageState = false;
-				}, 3000);
-				return;
+			//valid le username
+			if (await this.verifUserName(this.usernameInput)) {
+				return this.errorMsg("Your username is not valid !\n(Minimum three characters)");
 			}
-			//Valide le mdp
-			if (this.verifPassword(this.passwordInput)) {
-				this.errorMessage = "Your password is noit valide !\n(Minimum eight characters, at least one upper case English letter, one lower case English letter, one number and one special character)";
-				this.errorMessageState = true;
-				setTimeout(() => {
-					this.errorMessageState = false;
-				}, 3000);
-				return;
+			//valid le mdp
+			if (await this.verifPassword(this.passwordInput)) {
+				return this.errorMsg("Your password is not valid !\n(Minimum eight characters)");
 			}
 			this.loading = true;
 			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/createAcount.php?username=${this.usernameInput}&password=${this.passwordInput}`);
 			this.loading = false;
 			if (loginResApi.data.state == "true") {
-				this.succesMessage = "Your account has been created !";
-				this.succesMessageState = true;
-				setTimeout(() => {
-					this.succesMessageState = false;
-				}, 3000);
-				// Message de succes
-			} else {
-				this.errorMessage = loginResApi.data.moreInfo;
-				this.errorMessageState = true;
-				setTimeout(() => {
-					this.errorMessageState = false;
-				}, 3000);
+				await this.succesMsg("Your account has been created !");
+				return this.login();
 			}
+			return this.errorMsg(loginResApi.data.moreInfo);
 		},
 		async fillUsername() {
 			//Vérifie avec regex si les pseudo n'ont pas de caractères spéciaux et le nombre de caractères
-			return this.errorUsername = this.verifUserName(this.usernameInput);
+			return (this.errorUsername = await this.verifUserName(this.usernameInput));
 		},
 		async fillPassword() {
 			//Vérifie avec regex si les mdp n'ont pas de caractères spéciaux et le nombre de caractères
-			return this.errorPassword = this.verifPassword(this.passwordInput);
+			return (this.errorPassword = await this.verifPassword(this.passwordInput));
 		},
 		async userMaj() {
+			await this.verifLogin();
+			if (!this.curentlyLogin) return;
 			console.log("loul");
 		},
 		//renvoi true si pas valide
 		async verifUserName(username) {
-			return !username.match(/[\w]{3,29}/gm);
+			const regex = /^([a-zA-Z0-9_]{3,29})$/i;
+			console.log(regex.test(username));
+			return !regex.test(username);
 		},
 		async verifPassword(password) {
-			return !password.match(/[a-zA-Z0-9#?!@$%^&*-_]{8,99}/gm)///(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,99}/gm);///[a-zA-Z0-9#?!@$%^&*-_]
-		}
+			const regex = /^[a-zA-Z0-9#?!@$%^&*-_]{8,99}$/i;
+			return !regex.test(password);
+		},
+		async errorMsg(text) {
+			this.errorMessage = text;
+			this.errorMessageState = true;
+			return setTimeout(() => {
+				this.errorMessageState = false;
+			}, 3000);
+		},
+		async succesMsg(text) {
+			this.succesMessage = text;
+			this.succesMessageState = true;
+			return setTimeout(() => {
+				this.succesMessageState = false;
+			}, 3000);
+		},
 	},
 };
 </script>
 
 <style scoped lang="scss">
 $anime-time: 5s;
-
 $box-size: 300px;
 $clip-distance: 0.05;
 $clip-size: $box-size * (1 + $clip-distance * 2);
