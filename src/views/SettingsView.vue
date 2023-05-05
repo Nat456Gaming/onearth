@@ -35,8 +35,8 @@
 				<label for="password">Password :</label><br />
 				<input type="password" name="password" id="password" v-model="passwordInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your password" maxlength="100" size="3" @input="fillPassword()" v-bind:class="{ 'bg-red-200': errorPassword }" />
 				<div class="w-full flex flex-raw justify-center text-xl">
-					<input type="submit" value="Sign in" class="m-3 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="login()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-600': errorUsername || errorPassword }" />
-					<input type="submit" value="Sign up" class="m-3 w-1/4 rounded-md bg-cyan-600 p-2 active:bg-cyan-700" @click="create()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-600': errorUsername || errorPassword }" />
+					<input type="submit" value="Sign in" class="m-3 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="login()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-500': errorUsername || errorPassword }" />
+					<input type="submit" value="Sign up" class="m-3 w-1/4 rounded-md bg-cyan-600 p-2 active:bg-cyan-700" @click="create()" v-bind:disabled="errorUsername || errorPassword" v-bind:class="{ 'bg-red-500': errorUsername || errorPassword }" />
 				</div>
 			</form>
 		</div>
@@ -100,39 +100,34 @@ export default {
 	},
 	methods: {
 		async verifLogin() {
-			if (localStorage.getItem("token") == null) {
-				this.curentlyLogin = false;
-				return;
-			}
+			if (localStorage.getItem("token") == null) return (this.curentlyLogin = false);
 			const loginResApi = await axios.get(`https://api.cleboost.ovh/onearth/user/testLogin.php?token=${localStorage.getItem("token")}`);
 
-			if (loginResApi.data.state == "true") {
-				this.curentlyLogin = true;
-				this.username = loginResApi.data.username;
-			} else {
+			if (loginResApi.data.state == "false") {
 				this.curentlyLogin = false;
-				localStorage.removeItem("token");
-				return;
+				return localStorage.removeItem("token");
 			}
-
+			this.curentlyLogin = true;
+			this.username = loginResApi.data.username;
 			this.loading = true;
-			const userResApi = await axios.get("http://api.cleboost.ovh/onearth/user/getInfo.php?username=" + this.username);
+			const userResApi = await axios.get(`(http://api.cleboost.ovh/onearth/user/getInfo.php?username=${this.username}`);
 			this.loading = false;
-			this.username = userResApi.data[0].username;
+			let d;
+			for (const i in (d = Object.keys(userResApi.data[0]))) {
+				this[d[i]] = userResApi.data[0][d[i]];
+			}
+			/*this.username = userResApi.data[0].username;
 			this.pictureLink = userResApi.data[0].picturelink;
 			this.bioInput = userResApi.data[0].bio;
-			this.badge = userResApi.data[0].badge;
+			this.badge = userResApi.data[0].badge;*/
 			return;
 		},
 		async login() {
 			this.fillUsername(this.usernameInput);
 			this.fillPassword(this.passwordInput);
-			if (this.errorPassword || this.errorUsername) {
-				this.errorMsg("Your username or Password is not valid ");
-				return;
-			}
+			if (this.errorPassword || this.errorUsername) return this.errorMsg("Your username or Password is not valid ");
 			this.loading = true;
-			const loginResApi = await axios.get("http://api.cleboost.ovh/onearth/user/getToken.php?username=" + this.usernameInput + "&password=" + this.passwordInput);
+			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/getToken.php?username=${this.usernameInput}&password=${this.passwordInput}`);
 			this.loading = false;
 			if (loginResApi.data.state == "true") {
 				this.curentlyLogin = true;
@@ -143,7 +138,7 @@ export default {
 			return this.errorMsg("An error occure when login in !");
 		},
 		async unLogin() {
-			const loginResApi = await axios.get("http://api.cleboost.ovh/onearth/user/unLogin.php?token=" + localStorage.getItem("token"));
+			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/unLogin.php?token=${localStorage.getItem("token")}`);
 			if (loginResApi.data.state == "true") {
 				localStorage.removeItem("token");
 				this.curentlyLogin = false;
@@ -153,17 +148,11 @@ export default {
 		},
 		async create() {
 			//Vérifie si les champs sont remplis
-			if (this.usernameInput == "" || this.passwordInput == "") {
-				return this.errorMsg("Please fill all the fields !");
-			}
+			if (this.usernameInput == "" || this.passwordInput == "") return this.errorMsg("Please fill all the fields !");
 			//valid le username
-			if (await this.verifUserName(this.usernameInput)) {
-				return this.errorMsg("Your username is not valid !\n(Minimum three characters)");
-			}
+			if (await this.verifUserName(this.usernameInput)) return this.errorMsg("Your username is not valid !\n(Minimum three characters)");
 			//valid le mdp
-			if (await this.verifPassword(this.passwordInput)) {
-				return this.errorMsg("Your password is not valid !\n(Minimum eight characters)");
-			}
+			if (await this.verifPassword(this.passwordInput)) return this.errorMsg("Your password is not valid !\n(Minimum eight characters)");
 			this.loading = true;
 			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/createAcount.php?username=${this.usernameInput}&password=${this.passwordInput}`);
 			this.loading = false;
@@ -184,7 +173,14 @@ export default {
 		async userMaj() {
 			await this.verifLogin();
 			if (!this.curentlyLogin) return;
-			console.log("loul");
+			this.loading = true;
+			//requete API à faire :
+			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/createAcount.php?`);
+			this.loading = false;
+			if (loginResApi.data.state == "false") {
+				return this.errorMsg("An error occure during the process !");
+			}
+			return this.succesMsg("Yours informations have been updated !");
 		},
 		//renvoi true si pas valide
 		async verifUserName(username) {
@@ -193,9 +189,10 @@ export default {
 			return !regex.test(username);
 		},
 		async verifPassword(password) {
-			const regex = /^[a-zA-Z0-9#?!@$%^&*-_]{8,99}$/i;
+			const regex = /^[A-a-zZ0-9#?!@$%^&*-_]{8,99}$/i;
 			return !regex.test(password);
 		},
+		//les pop-up :
 		async errorMsg(text) {
 			this.errorMessage = text;
 			this.errorMessageState = true;
