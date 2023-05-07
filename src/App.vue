@@ -13,63 +13,63 @@ import MenuFooter from './components/FooterMenu.vue'
 <script lang="ts">
   //Quand on clique la suite de touche "onearth" sur le clavier
   // document.addEventListener('keydown')
-  document.addEventListener('keydown', function onEvent(event) {
-    const key = event.key.toLowerCase();
-    if (key === 'o') {
-      const nextKey = function(event) {
-        const key = event.key.toLowerCase();
-        if (key === 'n') {
-          const thirdKey = function(event) {
-            const key = event.key.toLowerCase();
-            if (key === 'e') {
-              const fourthKey = function(event) {
-                const key = event.key.toLowerCase();
-                if (key === 'a') {
-                  const fifthKey = function(event) {
-                    const key = event.key.toLowerCase();
-                    if (key === 'r') {
-                      const sixthKey = function(event) {
-                        const key = event.key.toLowerCase();
-                        if (key === 't') {
-                            const sevenKey = function(event) {
-                              const key = event.key.toLowerCase();
-                              if (key === "h") { 
-                                window.location.href = "/html/index.php";
-                                console.log("EASTER EGG !!!!");
-                                console.log("GG mec, tu m'as trouvé ! (ou meuf au passage)");
-                              } else {
-                                document.removeEventListener('keydown', sevenKey);
-                              }
-                            }
-                            document.addEventListener('keydown', sevenKey);
-                          document.removeEventListener('keydown', onEvent);
-                        } else {
-                          document.removeEventListener('keydown', sixthKey);
-                        }
-                      }
-                      document.addEventListener('keydown', sixthKey);
-                    } else {
-                      document.removeEventListener('keydown', fifthKey);
-                    }
-                  }
-                  document.addEventListener('keydown', fifthKey);
-                } else {
-                  document.removeEventListener('keydown', fourthKey);
-                }
-              }
-              document.addEventListener('keydown', fourthKey);
-            } else {
-              document.removeEventListener('keydown', thirdKey);
-            }
-          }
-          document.addEventListener('keydown', thirdKey);
-        } else {
-          document.removeEventListener('keydown', nextKey);
-        }
-      }
-      document.addEventListener('keydown', nextKey);
-    }
-  });
+  // document.addEventListener('keydown', function onEvent(event) {
+  //   const key = event.key.toLocaleLowerCase();
+  //   if (key === 'o') {
+  //     const nextKey = function(event) {
+  //       const key = event.key.toLowerCase();
+  //       if (key === 'n') {
+  //         const thirdKey = function(event) {
+  //           const key = event.key.toLowerCase();
+  //           if (key === 'e') {
+  //             const fourthKey = function(event) {
+  //               const key = event.key.toLowerCase();
+  //               if (key === 'a') {
+  //                 const fifthKey = function(event) {
+  //                   const key = event.key.toLowerCase();
+  //                   if (key === 'r') {
+  //                     const sixthKey = function(event) {
+  //                       const key = event.key.toLowerCase();
+  //                       if (key === 't') {
+  //                           const sevenKey = function(event) {
+  //                             const key = event.key.toLowerCase();
+  //                             if (key === "h") { 
+  //                               window.location.href = "/html/index.php";
+  //                               console.log("EASTER EGG !!!!");
+  //                               console.log("GG mec, tu m'as trouvé ! (ou meuf au passage)");
+  //                             } else {
+  //                               document.removeEventListener('keydown', sevenKey);
+  //                             }
+  //                           }
+  //                           document.addEventListener('keydown', sevenKey);
+  //                         document.removeEventListener('keydown', onEvent);
+  //                       } else {
+  //                         document.removeEventListener('keydown', sixthKey);
+  //                       }
+  //                     }
+  //                     document.addEventListener('keydown', sixthKey);
+  //                   } else {
+  //                     document.removeEventListener('keydown', fifthKey);
+  //                   }
+  //                 }
+  //                 document.addEventListener('keydown', fifthKey);
+  //               } else {
+  //                 document.removeEventListener('keydown', fourthKey);
+  //               }
+  //             }
+  //             document.addEventListener('keydown', fourthKey);
+  //           } else {
+  //             document.removeEventListener('keydown', thirdKey);
+  //           }
+  //         }
+  //         document.addEventListener('keydown', thirdKey);
+  //       } else {
+  //         document.removeEventListener('keydown', nextKey);
+  //       }
+  //     }
+  //     document.addEventListener('keydown', nextKey);
+  //   }
+  // });
 </script>
 
 <style>

@@ -8,14 +8,14 @@
 	<div class="loading z-50" v-bind:class="{ hidden: !loading }"></div>
 	<!-- Toutes les bannière  -->
 	<div class="top-[12%] fixed w-full flex flex- justify-center">
-		<!-- connection reussie -->
+		<!-- pop-up succes -->
 		<div class="alert alert-success shadow-lg w-3/4" v-bind:class="{ hidden: !succesMessageState }" @click="this.succesMessageState = false">
 			<div>
 				<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 				<span>{{ succesMessage }}</span>
 			</div>
 		</div>
-		<!-- connection echoue -->
+		<!-- pop-up error -->
 		<div class="alert alert-error shadow-lg w-3/4" v-bind:class="{ hidden: !errorMessageState }" @click="this.errorMessageState = false">
 			<div>
 				<svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -46,27 +46,35 @@
 				<div class="h-full flex flex-col justify-end w-4/5">
 					<div class="form-control">
 						<label class="label cursor-pointer">
-							<span class="label-text mr-4 text-xl">Private account : </span>
+							<span class="label-text mr-4 text-xl">Private account </span>
 							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked />
 						</label>
 					</div>
 
 					<div class="form-control">
 						<label class="label cursor-pointer">
-							<span class="label-text mr-4 text-xl">Settings1</span>
-							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked />
+							<span class="label-text mr-4 text-xl">T'es une pute</span>
+							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked disabled />
 						</label>
 					</div>
 				</div>
 				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="userMaj()" />
 			</form>
-			<form onsubmit="return false;" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
-				<input type="text" name="username" id="username" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new username" maxlength="30" size="3" />
-				<input type="text" name="bio" id="bio" v-model="bioInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new bio" maxlength="300" />
-				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" />
-			</form>
+			<div class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 mb-5 mt-5 flex flex-col items-center">
+				<button class="m-2 w-1/4 rounded-md bg-cyan-700 p-2 active:bg-cyan-800"  @click="modifProfil=true" v-bind:class="{ 'hidden': modifProfil }">Modify your profile</button>
+				<form onsubmit="return false;" class="w-full h-full flex-col flex items-center" v-bind:class="{ 'hidden': !modifProfil }">
+					<label for="username">Your new username :</label><br />
+					<input type="text" name="username" id="usernamenew" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }"/>
+					<label for="username">Your new bio :</label><br />
+					<input type="text" name="bio" id="bio" v-model="bioInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new bio" maxlength="300" />
+					<div class="flex flex-raw w-8/12 items-center">
+						<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" v-bind:disabled="errorUsername" v-bind:class="{ 'bg-red-500': errorUsername }"/>
+						<input type="submit" value="Cancel" class="m-2 w-1/2 rounded-md bg-orange-700 p-2 active:bg-orange-800" @click="modifProfil=false"/>
+					</div>
+				</form>
+			</div>
 			<div class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
-				<button class="m-2 w-1/2 rounded-md bg-orange-600 p-2 active:bg-orange-700" @click="unLogin()">Disconnect</button>
+				<button class="m-2 w-1/4 rounded-md bg-orange-600 p-2 active:bg-orange-700" @click="unLogin()">Disconnect</button>
 				<!-- <button class="m-2 w-1/2 rounded-md bg-orange-600 p-2 active:bg-orange-700" @click="unLogin()">Supprimer mon compte</button> -->
 			</div>
 		</div>
@@ -92,6 +100,7 @@ export default {
 			errorUsername: true,
 			errorPassword: true,
 			loading: false,
+			modifProfil: false,
 		};
 	},
 	mounted() {
@@ -102,7 +111,6 @@ export default {
 		async verifLogin() {
 			if (localStorage.getItem("token") == null) return (this.curentlyLogin = false);
 			const loginResApi = await axios.get(`https://api.cleboost.ovh/onearth/user/testLogin.php?token=${localStorage.getItem("token")}`);
-
 			if (loginResApi.data.state == "false") {
 				this.curentlyLogin = false;
 				return localStorage.removeItem("token");
@@ -110,16 +118,13 @@ export default {
 			this.curentlyLogin = true;
 			this.username = loginResApi.data.username;
 			this.loading = true;
-			const userResApi = await axios.get(`(http://api.cleboost.ovh/onearth/user/getInfo.php?username=${this.username}`);
+			const userResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/getInfo.php?username=${this.username}`);
 			this.loading = false;
-			let d;
-			for (const i in (d = Object.keys(userResApi.data[0]))) {
-				this[d[i]] = userResApi.data[0][d[i]];
-			}
-			/*this.username = userResApi.data[0].username;
+			this.username = userResApi.data[0].username;
+			this.usernameInput = userResApi.data[0].username;
 			this.pictureLink = userResApi.data[0].picturelink;
 			this.bioInput = userResApi.data[0].bio;
-			this.badge = userResApi.data[0].badge;*/
+			this.badge = userResApi.data[0].badge;
 			return;
 		},
 		async login() {
@@ -132,7 +137,8 @@ export default {
 			if (loginResApi.data.state == "true") {
 				this.curentlyLogin = true;
 				localStorage.setItem("token", loginResApi.data.token);
-				return this.succesMsg("Connection is successfull !");
+				this.succesMsg("Connection is successfull !");
+				return this.verifLogin();
 			}
 			this.curentlyLogin = false;
 			return this.errorMsg("An error occure when login in !");
@@ -142,6 +148,12 @@ export default {
 			if (loginResApi.data.state == "true") {
 				localStorage.removeItem("token");
 				this.curentlyLogin = false;
+				this.username = "";
+				this.usernameInput = "";
+				this.pictureLink = "";
+				this.bioInput = "";
+				this.badge = "";
+				this.passwordInput = "";
 				return this.succesMsg("You have been successfully disconnected !");
 			}
 			return this.errorMsg("An error occure when unlogin !");
@@ -155,11 +167,17 @@ export default {
 			if (await this.verifPassword(this.passwordInput)) return this.errorMsg("Your password is not valid !\n(Minimum eight characters)");
 			this.loading = true;
 			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/createAcount.php?username=${this.usernameInput}&password=${this.passwordInput}`);
-			this.loading = false;
 			if (loginResApi.data.state == "true") {
-				await this.succesMsg("Your account has been created !");
-				return this.login();
+				const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/getToken.php?username=${this.usernameInput}&password=${this.passwordInput}`);
+				this.loading = false;
+				if (loginResApi.data.state == "true") {
+					this.curentlyLogin = true;
+					localStorage.setItem("token", loginResApi.data.token);
+					this.succesMsg("Your account has been created !");
+					return this.verifLogin();
+				}
 			}
+			this.loading = false;
 			return this.errorMsg(loginResApi.data.moreInfo);
 		},
 		async fillUsername() {
@@ -180,7 +198,7 @@ export default {
 			if (loginResApi.data.state == "false") {
 				return this.errorMsg("An error occure during the process !");
 			}
-			return this.succesMsg("Yours informations have been updated !");
+			return this.succesMsg("Yours profile informations have been updated !");
 		},
 		//renvoi true si pas valide
 		async verifUserName(username) {
