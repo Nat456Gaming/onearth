@@ -185,7 +185,6 @@ export default {
 		//renvoi true si pas valide
 		async verifUserName(username) {
 			const regex = /^([a-zA-Z0-9_]{3,29})$/i;
-			console.log(regex.test(username));
 			return !regex.test(username);
 		},
 		async verifPassword(password) {
