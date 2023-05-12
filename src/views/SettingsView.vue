@@ -53,7 +53,7 @@
 
 					<div class="form-control">
 						<label class="label cursor-pointer">
-							<span class="label-text mr-4 text-xl">T'es une pute</span>
+							<span class="label-text mr-4 text-xl">In dev…</span>
 							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked disabled />
 						</label>
 					</div>
@@ -61,6 +61,7 @@
 				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="userMaj()" />
 			</form>
 			<div class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 mb-5 mt-5 flex flex-col items-center">
+				<h1 class="text-2xl">Your are connect with the acount named : {{ username }}</h1>
 				<button class="m-2 w-1/4 rounded-md bg-cyan-700 p-2 active:bg-cyan-800"  @click="modifProfil=true" v-bind:class="{ 'hidden': modifProfil }">Modify your profile</button>
 				<form onsubmit="return false;" class="w-full h-full flex-col flex items-center" v-bind:class="{ 'hidden': !modifProfil }">
 					<label for="username">Your new username :</label><br />
@@ -154,6 +155,8 @@ export default {
 				this.bioInput = "";
 				this.badge = "";
 				this.passwordInput = "";
+				this.errorUsername=true;
+				this.errorPassword=true;
 				return this.succesMsg("You have been successfully disconnected !");
 			}
 			return this.errorMsg("An error occure when unlogin !");

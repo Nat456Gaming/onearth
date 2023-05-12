@@ -21,19 +21,19 @@
 		</div>
 		<div class="w-full h-full flex flex-col mb-[10%]">
 			<div v-for="user in userList" class="rounded-xl border-solid border-2 border-black duration-200 hover:scale-101 hover:shadow-xl w-11/12 p-2 flex mt-5">
-			<router-link :to="{ name: 'user', params: { id: user.username } }" class="flex flex-row space-x-4 p-3">
-				<div class="avatar static">
-					<div class="w-24 rounded-full ring ring-black ring-offset-base-100 ring-offset-0">
-						<img :src="user.picturelink" alt="Profile Picture"/>
+				<router-link :to="{ name: 'user', params: { id: user.username } }" class="flex flex-row space-x-4 p-3">
+					<div class="avatar static">
+						<div class="w-24 rounded-full ring ring-black ring-offset-base-100 ring-offset-0">
+							<img :src="user.picturelink" alt="Profile Picture" />
+						</div>
 					</div>
-				</div>
-				<!--img :src="user.picturelink" alt="Profile Picture" class="w-[10vh] h-[9vh] lg:w-[30vh] lg:h-[30vh] pr-1 rounded-full" /-->
-				<div class="flex flex-col">
-					<h1 class="text-5xl">{{ user.username }}</h1>
-					<h1 class="text-2xl pl-4">> {{ user.badge }}</h1>
-				</div>
-			</router-link>
-		</div>
+					<!--img :src="user.picturelink" alt="Profile Picture" class="w-[10vh] h-[9vh] lg:w-[30vh] lg:h-[30vh] pr-1 rounded-full" /-->
+					<div class="flex flex-col">
+						<h1 class="text-5xl">{{ user.username }}</h1>
+						<h1 class="text-2xl pl-4">> {{ user.badge }}</h1>
+					</div>
+				</router-link>
+			</div>
 		</div>
 	</section>
 </template>
@@ -73,14 +73,11 @@ export default defineComponent({
 				await this.getUserList();
 				return;
 			}
-
 			// Affichage de la barre de chargement
 			this.userList = [];
 			this.isNotProgress = false;
-
 			// Récupération des données
 			const userResApi = await axios.get<OnearthUsers[]>("http://api.cleboost.ovh/onearth/user/getAcount.php?username=" + this.searchBar);
-
 			// Vérification si la recherche n'a rien trouvé
 			if (userResApi.data.length == 0) {
 				this.userList = [
