@@ -15,10 +15,12 @@ import { RouterLink } from "vue-router";
 				<!-- div class="flex flex-col w-1/4 justify-center">
 					<img :src="pictureLink" alt="Profile Picture" class="h-48 w-48 rounded-full border-8 border-black" />
 				</div-->
-				<div class="flex flex-col justify-center space-y-4 w-2/3 items-center">
-					<h1 class="text-4xl w-full text-center">{{ username }}</h1>
-					<p class="text-center text-2xl w-full">0 friends</p>
-					<button class="text-2xl text-center px-1 bg-stone-400 w-1/2 rounded-md active:bg-stone-400">Add to my friends <span class="material-icons-round text-3xl">group_add</span></button>
+				<div class="flex flex-col justify-center space-y-8 w-2/3 items-center">
+					<h1 class="text-7xl w-full text-center">{{ username }}</h1>
+					<div class="flex flex-row justify-center w-3/4">
+						<p class="text-center text-2xl w-1/4">0 friends</p>
+						<button class="text-2xl text-center px-1 bg-stone-400 w-1/2 rounded-md active:bg-stone-500"><span class="material-icons-round text-3xl translate-y-1">group_add</span> Add to my friends</button>
+					</div>
 					<p class="mt-3 bg-slate-400 rounded-2xl p-3 text-xl w-full">{{ bio }}</p>
 				</div>
 			</div>
@@ -32,7 +34,7 @@ import { RouterLink } from "vue-router";
 			<div class="w-full flex justify-center mt-2">
 				<h1 class="text-4xl text-center">{{ username }}</h1>
 			</div>
-			<div class="flex lfex-row justify-center space-x-8 mt-3">
+			<div class="flex flex-row justify-center space-x-8 mt-3">
 				<p class="text-center">0 friends</p>
 				<button>Add to my friends</button>
 			</div>
@@ -62,7 +64,7 @@ export default {
 			username: "",
 			pictureLink: "",
 			bio: "",
-			badge: "membre",
+			badge: "member",
 			notfound: false,
 		};
 	},
