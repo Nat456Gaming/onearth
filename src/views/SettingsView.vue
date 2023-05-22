@@ -43,6 +43,7 @@
 		<!-- Quand login -->
 		<div v-bind:class="{ hidden: !curentlyLogin }">
 			<form onsubmit="return false;" class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
+				<h1 class="text-2xl">Setting :</h1>
 				<div class="h-full flex flex-col justify-end w-4/5">
 					<div class="form-control">
 						<label class="label cursor-pointer">
@@ -50,7 +51,6 @@
 							<input type="checkbox" class="toggle toggle-lg bg-slate-500 checked:bg-lime-700" checked />
 						</label>
 					</div>
-
 					<div class="form-control">
 						<label class="label cursor-pointer">
 							<span class="label-text mr-4 text-xl">In dev…</span>
@@ -58,25 +58,25 @@
 						</label>
 					</div>
 				</div>
-				<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="userMaj()" />
+				<input type="submit" value="Save change" class="m-2 w-1/4 rounded-md bg-lime-700 p-2 active:bg-lime-800" @click="userMaj()" />
 			</form>
 			<div class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 mb-5 mt-5 flex flex-col items-center">
-				<h1 class="text-2xl">Your are connect with the acount named : {{ username }}</h1>
-				<button class="m-2 w-1/4 rounded-md bg-cyan-700 p-2 active:bg-cyan-800"  @click="modifProfil=true" v-bind:class="{ 'hidden': modifProfil }">Modify your profile</button>
-				<form onsubmit="return false;" class="w-full h-full flex-col flex items-center" v-bind:class="{ 'hidden': !modifProfil }">
+				<h1 class="text-2xl">Your are connect with the account called : {{ username }}</h1>
+				<button class="m-2 w-1/4 rounded-md bg-cyan-700 p-2 active:bg-cyan-800" @click="modifProfile(true)" v-bind:class="{ hidden: modifProfil }">Edit your profile</button>
+				<form onsubmit="return false;" class="w-full h-full flex-col flex items-center" v-bind:class="{ hidden: !modifProfil }">
 					<label for="username">Your new username :</label><br />
-					<input type="text" name="username" id="usernamenew" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }"/>
+					<input type="text" name="username" id="usernamenew" v-model="usernameInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new username" maxlength="30" size="3" @input="fillUsername()" v-bind:class="{ 'bg-red-200': errorUsername }" />
 					<label for="username">Your new bio :</label><br />
 					<input type="text" name="bio" id="bio" v-model="bioInput" class="m-2 w-5/6 rounded-md p-1" placeholder="Your new bio" maxlength="300" />
 					<div class="flex flex-raw w-8/12 items-center">
-						<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" v-bind:disabled="errorUsername" v-bind:class="{ 'bg-red-500': errorUsername }"/>
-						<input type="submit" value="Cancel" class="m-2 w-1/2 rounded-md bg-orange-700 p-2 active:bg-orange-800" @click="modifProfil=false"/>
+						<input type="submit" value="Save change" class="m-2 w-1/2 rounded-md bg-lime-700 p-2 active:bg-lime-800" v-bind:disabled="errorUsername" v-bind:class="{ 'bg-red-500': errorUsername }" @click="userMaj()" />
+						<input type="submit" value="Cancel" class="m-2 w-1/2 rounded-md bg-orange-700 p-2 active:bg-orange-800" @click="modifProfile(false)" />
 					</div>
 				</form>
 			</div>
-			<div class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-col flex items-center mb-5 mt-5">
+			<div class="w-full h-1/2 rounded-3xl bg-slate-200 p-4 flex-raw flex items-center mb-5 mt-5 justify-center">
 				<button class="m-2 w-1/4 rounded-md bg-orange-600 p-2 active:bg-orange-700" @click="unLogin()">Disconnect</button>
-				<!-- <button class="m-2 w-1/2 rounded-md bg-orange-600 p-2 active:bg-orange-700" @click="unLogin()">Supprimer mon compte</button> -->
+				<button class="m-2 w-1/4 rounded-md bg-red-700 p-2 active:bg-orange-800" @click="deleteAcc()">Delete my account</button>
 			</div>
 		</div>
 	</section>
@@ -90,9 +90,10 @@ export default {
 		return {
 			usernameInput: "",
 			passwordInput: "",
-			username: "",
-			bioInput: "",
 			pirvateInput: false,
+			bioInput: "",
+			username: "",
+			bio: "",
 			curentlyLogin: true,
 			succesMessageState: false,
 			succesMessage: "",
@@ -124,7 +125,7 @@ export default {
 			this.username = userResApi.data[0].username;
 			this.usernameInput = userResApi.data[0].username;
 			this.pictureLink = userResApi.data[0].picturelink;
-			this.bioInput = userResApi.data[0].bio;
+			this.bio = userResApi.data[0].bio;
 			this.badge = userResApi.data[0].badge;
 			return;
 		},
@@ -153,10 +154,11 @@ export default {
 				this.usernameInput = "";
 				this.pictureLink = "";
 				this.bioInput = "";
+				this.bio = "";
 				this.badge = "";
 				this.passwordInput = "";
-				this.errorUsername=true;
-				this.errorPassword=true;
+				this.errorUsername = true;
+				this.errorPassword = true;
 				return this.succesMsg("You have been successfully disconnected !");
 			}
 			return this.errorMsg("An error occure when unlogin !");
@@ -192,8 +194,10 @@ export default {
 			return (this.errorPassword = await this.verifPassword(this.passwordInput));
 		},
 		async userMaj() {
+			//cette fct sert pour les setting ou le profile ???
 			await this.verifLogin();
 			if (!this.curentlyLogin) return;
+			return this.errorMsg("This part currently in dev !");
 			this.loading = true;
 			//requete API à faire :
 			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/createAcount.php?`);
@@ -201,7 +205,7 @@ export default {
 			if (loginResApi.data.state == "false") {
 				return this.errorMsg("An error occure during the process !");
 			}
-			return this.succesMsg("Yours profile informations have been updated !");
+			return this.succesMsg("Your profile's informations have been updated !");
 		},
 		//renvoi true si pas valide
 		async verifUserName(username) {
@@ -226,6 +230,27 @@ export default {
 			return setTimeout(() => {
 				this.succesMessageState = false;
 			}, 3000);
+		},
+		async modifProfile(state) {
+			this.usernameInput = this.username;
+			this.fillUsername();
+			this.bioInput = this.bio;
+			return (this.modifProfil = state);
+		},
+		async deleteAcc() {
+			await this.verifLogin();
+			if (!this.curentlyLogin) return;
+			const v = window.confirm("Do you realy want to delete your account ?\nThis action is irrevrsible.");
+			if (!v) return;
+			return this.errorMsg("This part currently in dev !");
+			this.loading = true;
+			//requete API à faire :
+			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/deleteAcount.php?username=${this.username}&password=${this.password}`);
+			this.loading = false;
+			if (loginResApi.data.state == "false") {
+				return this.errorMsg("An error occure during the process !");
+			}
+			return this.succesMsg("Your account has been deleted !");
 		},
 	},
 };
