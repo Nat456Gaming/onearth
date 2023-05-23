@@ -94,6 +94,7 @@ export default defineComponent({
 		},
 	},
 	async mounted() {
+		window.scrollTo(0,0);
 		// Chargement de la liste des utilisateurs
 		await this.getUserList();
 		this.isNotProgress = true;

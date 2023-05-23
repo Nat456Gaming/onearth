@@ -53,6 +53,7 @@ export default defineComponent({
 		},
 	},
 	async mounted() {
+    window.scrollTo(0,0);
 		//await this.getUserList();
 		this.userList = [
 			{
