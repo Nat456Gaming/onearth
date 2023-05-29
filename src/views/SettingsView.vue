@@ -128,6 +128,7 @@ export default {
 			this.pictureLink = userResApi.data[0].picturelink;
 			this.bio = userResApi.data[0].bio;
 			this.badge = userResApi.data[0].badge;
+			this.mod
 			return;
 		},
 		async login() {
@@ -198,10 +199,9 @@ export default {
 			//cette fct sert pour les setting ou le profile ???
 			await this.verifLogin();
 			if (!this.curentlyLogin) return;
-			return this.errorMsg("This part currently in dev !");
 			this.loading = true;
 			//requete API à faire :
-			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/createAcount.php?`);
+			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/saveProfil.php?token=${localStorage.getItem("token")}&username=${this.usernameInput}&bio=${this.bioInput}`);
 			this.loading = false;
 			if (loginResApi.data.state == "false") {
 				return this.errorMsg("An error occure during the process !");
@@ -243,13 +243,14 @@ export default {
 			if (!this.curentlyLogin) return;
 			const v = window.confirm("Do you realy want to delete your account ?\nThis action is irrevrsible.");
 			if (!v) return;
-			return this.errorMsg("This part currently in dev !");
 			this.loading = true;
 			//requete API à faire :
 			const loginResApi = await axios.get(`http://api.cleboost.ovh/onearth/user/deleteAcount.php?username=${this.username}&password=${this.password}`);
 			this.loading = false;
 			if (loginResApi.data.state == "false") {
-				return this.errorMsg("An error occure during the process !");
+				console.log(loginResApi.data.moreInfo);
+				
+				return this.errorMsg(`An error occure during the process !${loginResApi.data.moreInfo}`);
 			}
 			return this.succesMsg("Your account has been deleted !");
 		},
@@ -298,14 +299,6 @@ $codepen-logo-path: url("http://localhost:5173/icon.png");
 	&::before {
 		animation-delay: $anime-time * -0.5;
 	}
-
-	// for debug
-	//   &:hover {
-	//     &::after,
-	//     &::before {
-	//       background-color: rgba(#f00, .3);
-	//     }
-	//   }
 }
 
 @keyframes clipMe {
